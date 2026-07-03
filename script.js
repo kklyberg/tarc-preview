@@ -54,7 +54,8 @@ async function fetchGoogleInventoryFeed() {
         
         // Cache rows fields securely into global runtime memory
         globalSheetCatalog = await response.json();
-        
+         // INSERT THIS CODE LINE DIRECTLY BENEATH IT TO RUN THE REPORT:
+        runTarcImageLinkValidator(globalSheetCatalog);
         // Forward data fields straight to our compilation and layout engine
         buildLiveProductCards(globalSheetCatalog);
         initializeLiveSearchFilter();
@@ -288,4 +289,76 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.removeItem("tarcAutoSearchQuery");
     }
 });
+// =========================================================================
+// TARC PRODUCTION IMAGE LINK VALIDATOR & RECONNAISSANCE ENGINE
+// =========================================================================
+function runTarcImageLinkValidator(catalogItems) {
+    console.log("%c📡 TARC IMAGE VALIDATOR ACTIVATED. SCANNING PIPELINES...", "color: #00FFFF; font-weight: bold; font-size: 1.1rem;");
+    
+    if (!catalogItems || catalogItems.length === 0) {
+        console.error("❌ VALIDATOR CRITICAL: Database payload is empty or unreadable.");
+        return;
+    }
+
+    // Capture the exact location parameters of your active web browser window
+    const currentHost = window.location.hostname;
+    const currentPath = window.location.pathname;
+    
+    catalogItems.forEach((item, index) => {
+        const rowNum = index + 2; // Rows start at 2 because row 1 holds headers
+        const modelLabel = item.model || `Row ${rowNum}`;
+        const rawPath = item.image ? item.image.trim() : "";
+        
+        console.log(`%cChecking Row ${rowNum} [${modelLabel}]...`, "color: #cbd5e1;");
+
+        // DIAGNOSTIC CHECK 1: Missing or Blank Cell
+        if (rawPath === "") {
+            console.error(`  ↳ ❌ ERROR (Row ${rowNum}): The image cell is completely blank inside your spreadsheet.`);
+            return;
+        }
+
+        // DIAGNOSTIC CHECK 2: Absolute vs Relative Link Matrix
+        if (rawPath.startsWith("http://") || rawPath.startsWith("https://")) {
+            console.log(`  ↳ %c✓ VALID ONLINE LINK: Pulling down asset from absolute web cloud URL structure.`, "color: #00FF66;");
+            return;
+        }
+
+        // DIAGNOSTIC CHECK 3: Dot-Slash Prefix Warning Sliders
+        if (rawPath.startsWith(".") || rawPath.startsWith("/")) {
+            console.error(`  ↳ ❌ CRITICAL TRAFFIC ERROR (Row ${rowNum}): Your path contains dots or leading slashes ('${rawPath}'). GitHub Pages strictly requires starting directly with the folder name (e.g., 'Kenwood/images/...').`);
+            return;
+        }
+
+        // DIAGNOSTIC CHECK 4: Backslash Collision Warning
+        if (rawPath.includes("\\")) {
+            console.error(`  ↳ ❌ ERROR (Row ${rowNum}): Your path uses Windows backslashes ('\\'). Web servers require standard web forward slashes ('/').`);
+            return;
+        }
+
+        // DIAGNOSTIC CHECK 5: Compute the Computed Deployment Target URL Route
+        let targetRepoFolder = "/";
+        if (currentHost.includes("github.io")) {
+            // Extracts your exact repository folder name out of the active URL string path
+            const pathSegments = currentPath.split('/').filter(s => s.trim() !== "");
+            if (pathSegments.length > 0) {
+                targetRepoFolder = `/${pathSegments[0]}/`;
+            }
+        }
+
+        const calculatedAbsoluteUrl = `${window.location.origin}${targetRepoFolder}${rawPath}`;
+        
+        // DIAGNOSTIC CHECK 6: Live Network Ping Request Check
+        fetch(calculatedAbsoluteUrl, { method: 'HEAD' })
+            .then(res => {
+                if (res.ok) {
+                    console.log(`  ↳ %c✓ LIVE SERVER VERIFIED: GitHub located the folder asset at -> ${calculatedAbsoluteUrl}`, "color: #00FF66;");
+                } else if (res.status === 404) {
+                    console.error(`  ↳ ❌ SERVER 404 MISMATCH (Row ${rowNum}): GitHub cannot locate this file. Either:\n     1. You didn't drag/upload the '${rawPath.split('/')[0]}' folder into your online GitHub repository browser tab.\n     2. Case-Sensitivity Clash: Your cell spells it '${rawPath}' but your physical file or folder names use capital/lowercase letters that don't match identically.`);
+                }
+            })
+            .catch(err => {
+                console.error(`  ↳ ⚠️ NETWORK INTERCEPT COLLISION: Unable to ping asset route safely.`, err);
+            });
+    });
+}
 
