@@ -6,67 +6,81 @@
     <title>TARC Radio Products | Sector Solutions</title>
     <!-- Linking back out to your main corporate style sheet -->
     <link rel="stylesheet" href="../style.css">
-    <!-- Secure live Cloudflare CDN Font Awesome link path for sharp icons -->
+    <!-- Secure open-source Font Awesome link path for sharp vector icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
-<body style="padding-top: 70px;">
+<body style="padding-top: 110px; background-color: #f8fafc; margin: 0; font-family: 'Segoe UI', system-ui, sans-serif;">
 
-    <!-- Professional Fixed Top Header -->
-    <header class="main-header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="../index.html"><img src="../tarc-logo.png" alt="TARC Logo"></a>
+    <!-- Professional Fixed Top Corporate Header (Solid Opaque White Background Shield) -->
+    <header class="main-header" style="position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.08); background-color: #ffffff !important; border-bottom: 3px solid #0b5eb4; display: flex; flex-direction: column;">
+        
+        <!-- Tactical Contact Bar Top Strip: Pinned exactly like your main homepage -->
+        <div style="background-color: #0e1a24; color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600; padding: 8px 0; border-bottom: 1px solid rgba(11, 94, 180, 0.3); width: 100%;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; box-sizing: border-box;">
+                <div><i class="fa-solid fa-location-dot" style="color: #00FF66; margin-right: 4px;"></i> T.A. Radio Communication | 700 S John Rodes Blvd, Melbourne, FL 32904</div>
+                <div><a href="tel:3217254824" style="color: #00FFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; font-weight: 600;"><i class="fa-solid fa-phone-volume"></i> (321) 725-4824</a></div>
             </div>
-            <nav class="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="../index.html#catalog">Product Catalog</a>
-                <a href="../index.html#industries">Industries Served</a>
-                <a href="../calculator.html" class="nav-calc-link"><i class="fa-solid fa-tower-broadcast"></i> RF Link Sim</a>
-            </nav>
+        </div>
+
+        <!-- Core Brand Navigation Panel Row -->
+        <div style="padding: 12px 0; width: 100%; background-color: #ffffff !important; box-sizing: border-box;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;">
+                <div class="logo"><img src="../tarc-logo.png" alt="T.A. Radio Communication" style="height: 50px; width: auto; display: block; cursor: pointer;" onclick="window.location.href='../index.html';"></div>
+                <nav class="nav-links" style="display: flex; align-items: center;">
+                    <a href="../index.html" style="color: #0e1a24; text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.92rem;">Home</a>
+                    <a href="../index.html#catalog" style="color: #0e1a24; text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.92rem;">Product Catalog</a>
+                    <a href="../index.html#industries" style="color: #0e1a24; text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.92rem;">Industries Served</a>
+                    <a href="../calculator.html" class="nav-calc-link" style="color: #0e1a24; text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.92rem;"><i class="fa-solid fa-tower-broadcast" style="color: #0b5eb4;"></i> RF Link Sim</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <!-- Dynamic Hero Showcase Banner -->
-    <section id="industryHero" class="hero-section" style="height: 50vh; background-size: cover; background-position: center;">
-        <div class="container hero-content">
-            <h1 id="indTitle" style="font-size: 2.8rem;">Loading Sector Solutions...</h1>
-            <p id="indSubtitle" style="max-width: 650px; margin: 15px auto 0; color: #cbd5e1;"></p>
+    <!-- PREMIUM WIDESCREEN HERO SHOWCASE BANNER FRAME -->
+    <!-- FIXED: Logo box removed. Section now acts as a pure full-bleed image container with an integrated text contrast shield -->
+    <section id="industryHero" class="hero-section" style="position: relative; height: 45vh; min-height: 320px; background-size: cover !important; background-position: center !important; display: flex; align-items: center; border-bottom: 4px solid #0b5eb4; box-sizing: border-box; width: 100%; padding: 0; margin: 0; overflow: hidden;">
+        
+        <!-- Text overlay content container centered beautifully within the layout grids -->
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; text-align: left; box-sizing: border-box; position: relative; z-index: 10;">
+            <div style="max-width: 800px; display: flex; flex-direction: column; gap: 8px;">
+                <span id="indTag" style="color: #00FFFF; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; display: block; text-shadow: 0 2px 8px rgba(0,0,0,0.85);"></span>
+                <h1 id="indTitle" style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; text-transform: uppercase; color: #ffffff; margin: 0; line-height: 1.1; letter-spacing: -0.5px; text-shadow: 0 4px 15px rgba(0,0,0,0.95);">Loading Sector Solutions...</h1>
+                <p id="indSubtitle" style="font-size: 1.1rem; color: #cbd5e1; margin: 10px 0 0 0; text-shadow: 0 2px 10px rgba(0,0,0,0.9); font-weight: 500; line-height: 1.4;"></p>
+            </div>
         </div>
     </section>
 
     <!-- HIGH-UTILITY SPLIT BLUEPRINT GRID MATRIX -->
-    <section style="padding: 80px 0; background-color: var(--light-ice);">
-        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: start;">
+    <section style="padding: 80px 0; background-color: #f4f8fb;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: start; box-sizing: border-box;">
             
             <!-- Left Column: Operations Text & Technical Infrastructure -->
             <div style="text-align: left;">
-                <span id="indTag" style="display: inline-block; color: var(--primary-blue); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Sector Analysis</span>
-                <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; color: var(--midnight-navy); line-height: 1.2;" id="indHeading">Operational Efficiency</h2>
-                <p style="font-size: 1.05rem; color: var(--steel-slate); line-height: 1.7; margin-bottom: 30px;" id="indBodyText"></p>
+                <span style="display: inline-block; color: #0b5eb4; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Sector Analysis</span>
+                <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; color: #0e1a24; line-height: 1.2;" id="indHeading">Operational Efficiency</h2>
+                <p style="font-size: 1.05rem; color: #5a6e72; line-height: 1.7; margin-bottom: 30px;" id="indBodyText"></p>
                 
-                <div style="background: var(--white); padding: 25px; border-radius: 6px; border-left: 5px solid var(--primary-blue); box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-top: 20px;">
-                    <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-blue); margin-bottom: 8px;"><i class="fa-solid fa-microchip"></i> Recommended Network Architecture:</h4>
-                    <p id="indArchitecture" style="font-size: 0.95rem; color: var(--midnight-navy); line-height: 1.5; font-weight: 500;"></p>
+                <div style="background: #ffffff; padding: 25px; border-radius: 6px; border-left: 5px solid #0b5eb4; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-top: 20px; border: 1px solid #e2e8f0; border-left: 5px solid #0b5eb4;">
+                    <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: #0b5eb4; margin-bottom: 8px;"><i class="fa-solid fa-microchip"></i> Recommended Network Architecture:</h4>
+                    <p id="indArchitecture" style="font-size: 0.95rem; color: #0e1a24; line-height: 1.5; font-weight: 500;"></p>
                 </div>
             </div>
             
             <!-- Right Column: Interactive Sector Hardware Card -->
             <div style="background: #0b1116; border: 2px solid rgba(11, 94, 180, 0.3); border-radius: 8px; padding: 35px 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); text-align: left;">
-                <div style="grid-column: 1/-1; color: #00FF66; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px;"><i class="fa-solid fa-layer-group"></i> Target Fleet Specification</div>
+                <div style="color: #00FF66; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px;"><i class="fa-solid fa-layer-group"></i> Target Fleet Specification</div>
                 <h3 style="color: #fff; font-size: 1.5rem; font-weight: 800; margin-bottom: 15px;" id="indDeployTitle">Recommended Hardware</h3>
                 <p style="color: #cbd5e1; font-size: 0.92rem; margin-bottom: 25px;" id="indDeployDesc">Optimized for high-penetration performance in this environment.</p>
                 
-                <ul id="indDeploySpecs" style="list-style: none; margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px;">
-                    <!-- JavaScript automatically injects verified sector requirements here -->
-                </ul>
+                <ul id="indDeploySpecs" style="list-style: none; padding: 0; margin: 0 0 30px 0; display: flex; flex-direction: column; gap: 12px; text-align: left;"></ul>
                 
                 <a href="../index.html#catalog" id="indViewCatalogBtn" class="btn-primary" style="display: block; text-align: center; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; padding: 12px; font-size: 0.88rem;">
                     <i class="fa-solid fa-magnifying-glass"></i> View Matching Fleet Catalog
                 </a>
             </div>
-
         </div>
     </section>
+
 
     <!-- Industry Teaser Back to Calculator -->
     <section class="teaser-section">
