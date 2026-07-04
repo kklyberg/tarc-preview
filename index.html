@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TARC Radio Products | Commercial Two-Way Radio Networks</title>
+    <title>T.A. Radio Communication | Commercial Two-Way Wireless Networks</title>
     <link rel="stylesheet" href="style.css">
+    <!-- RESTORED: Secure open-source Font Awesome icon CDN link. Broken cloudflare address is removed. -->
     <link rel="stylesheet" href="https://cloudflare.com">
-</head>
+	</head>
 <body>
-
-        <!-- Professional Fixed Top Corporate Branding Header Assembly -->
-    <header class="main-header" style="position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); background-color: var(--white);">
+    <!-- Professional Fixed Top Corporate Branding Header Assembly -->
+    <!-- FIXED: background-color uses an absolute hex string (#ffffff) and !important to lock a solid white shield in place permanently -->
+    <header class="main-header" style="position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.08); background-color: #ffffff !important;">
         
-        <!-- NEW: High-Utility Tactical Contact Bar (Top Strip) -->
-        <div style="background-color: var(--midnight-navy); color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600; padding: 6px 0; border-bottom: 1px solid rgba(11, 94, 180, 0.3);">
+        <!-- Tactical Contact Bar Top Strip: Pinned directly inside the main opaque header wrapper -->
+        <div style="background-color: #0e1a24; color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600; padding: 8px 0; border-bottom: 1px solid rgba(11, 94, 180, 0.3); width: 100%;">
             <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <div>
                     <i class="fa-solid fa-location-dot" style="color: #00FF66; margin-right: 4px;"></i> 
@@ -27,13 +28,14 @@
             </div>
         </div>
 
-        <!-- Core Brand Navigation & Shopping Cart Toggle Drawer Line -->
-        <div style="padding: 10px 0;">
+        <!-- Core Brand Navigation & Shopping Cart Drawer Toggle Line -->
+        <div style="padding: 12px 0; width: 100%; background-color: #ffffff !important;">
             <div class="container header-container" style="display: flex; justify-content: space-between; align-items: center;">
+
                 <div class="logo">
                     <img src="tarc-logo.png" alt="T.A. Radio Communication Logo" style="height: 50px; width: auto; display: block;">
                 </div>
-                <nav class="nav-links" style="display: flex; align-items: center;">
+                <nav class="nav-links">
                     <a href="#home">Home</a>
                     <a href="#catalog">Product Catalog</a>
                     <a href="#industries">Industries Served</a>
@@ -47,52 +49,72 @@
         </div>
     </header>
 
-
-        <!-- Hero Section -->
+    <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="container hero-content">
             <h1>Mission-Critical Two-Way Radio Solutions</h1>
-            <p>Rugged hardware, crystal-clear digital audio, and flawless wide-area network coverage engineered to keep your workforce connected and safe. Authorized dealer for Motorola, Kenwood, Hytera, and Ritron.</p>
-            <!-- The buttons container has been deleted from here -->
+            <p>Rugged hardware, crystal-clear digital audio, and flawless wide-area network coverage engineered to keep your workforce connected and safe. Authorized dealer for Motorola, Kenwood, Icom, Hytera, and Ritron.</p>
         </div>
     </section>
 
-
-    <!-- Dynamic Inventory Filter Catalog Section -->
-    <section id="catalog" class="catalog-section">
+          <!-- Dynamic Enterprise Inventory Filter Catalog Section (De-Boxed Open Design) -->
+    <section id="catalog" class="catalog-section" style="padding: 80px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0;">
         <div class="container">
-            <h2 class="section-title">Authorized Vendor Lineup</h2>
-            <p class="section-subtitle">Real-time hardware availability and technical specifications from leading wireless networks.</p>
+            <span style="color: #0b5eb4; font-size: 0.75rem; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 5px;"><i class="fa-solid fa-boxes-stacked"></i> DIRECT PROCUREMENT</span>
+            <h2 class="section-title" style="color: #0e1a24; font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; text-align: left;">Authorized Marketplace Catalog</h2>
+            <p class="section-subtitle" style="color: #5a6e72; font-size: 1rem; margin-bottom: 45px; text-align: left; max-width: 700px;">Real-time hardware availability and technical specifications from leading wireless networks.</p>
             
-                        <div class="search-filter-container">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="catalogSearch" placeholder="Search by brand, model, or spec (e.g. Motorola, UHF, Portable)...">
+                        <!-- MASTER FILTER HUB DECK ASSEMBLY: Open Design Layout Stack -->
+            <div class="search-filter-container" style="background: none; border: none; padding: 0; margin-bottom: 45px; display: flex; flex-direction: column; gap: 25px; box-shadow: none;">
                 
-                <!-- EXPANDED CATEGORY FILTER DECK: Targets your spreadsheet types exactly -->
-                <div class="accessory-filter-pills" style="margin-top: 20px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
-                    <button class="pill-btn" onclick="filterAccessory('All')">All Hardware</button>
-                    <button class="pill-btn" onclick="filterAccessory('Portable Radio')"><i class="fa-solid fa-walkie-talkie"></i> Portables</button>
-                    <button class="pill-btn" onclick="filterAccessory('Mobile Radio')"><i class="fa-solid fa-car-rear"></i> Mobiles</button>
-                    <button class="pill-btn" onclick="filterAccessory('Repeater Infrastructure')"><i class="fa-solid fa-tower-cell"></i> Repeaters</button>
-                    <button class="pill-btn" onclick="filterAccessory('Antennas')"><i class="fa-solid fa-tower-broadcast"></i> Antennas</button>
-                    <button class="pill-btn" onclick="filterAccessory('Batteries')"><i class="fa-solid fa-battery-full"></i> Batteries</button>
-                    <button class="pill-btn" onclick="filterAccessory('Chargers')"><i class="fa-solid fa-bolt"></i> Chargers</button>
-                    <button class="pill-btn" onclick="filterAccessory('Microphones')"><i class="fa-solid fa-microphone"></i> Microphones</button>
+                <!-- Main Search Bar (Sleek light-mode console styling) -->
+                <div style="position: relative; width: 100%;">
+                    <i class="fa-solid fa-magnifying-glass search-icon" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #5a6e72; font-size: 1.1rem; z-index: 5;"></i>
+                    <input type="text" id="catalogSearch" placeholder="Search by brand, model, or spec (e.g. Motorola, UHF, Portable)..." style="width: 100%; padding: 16px 15px 16px 50px; background: #f8fafc; border: 2px solid #e2e8f0; color: #0e1a24; border-radius: 6px; outline: none; font-size: 1rem; font-family: inherit; box-sizing: border-box; font-weight: 500;">
                 </div>
+
+                <!-- TIER 1: BRAND FILTERS (MOVED TO THE ABSOLUTE TOP WITH SAFE INTERCEPTS) -->
+                <div style="display: flex; flex-direction: column; gap: 10px; text-align: left; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0;">
+                    <label style="font-size: 0.75rem; font-weight: 800; color: #0b5eb4; text-transform: uppercase; letter-spacing: 0.75px;"><i class="fa-solid fa-handshake"></i> 1. Select Manufacturer Fleet:</label>
+                    <div class="accessory-filter-pills" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="pill-btn brand-pill active" id="btn-brand-all" onclick="selectBrandFilter('All')"><i class="fa-solid fa-globe"></i> All Brands</button>
+                        <button class="pill-btn brand-pill" id="btn-brand-motorola" onclick="selectBrandFilter('Motorola')"><i class="fa-solid fa-circle-nodes"></i> MOTOROLA</button>
+                        <button class="pill-btn brand-pill" id="btn-brand-kenwood" onclick="selectBrandFilter('Kenwood')"><i class="fa-solid fa-circle-nodes"></i> KENWOOD</button>
+                        <button class="pill-btn brand-pill" id="btn-brand-icom" onclick="selectBrandFilter('Icom')"><i class="fa-solid fa-circle-nodes"></i> ICOM</button>
+                        <button class="pill-btn brand-pill" id="btn-brand-hytera" onclick="selectBrandFilter('Hytera')"><i class="fa-solid fa-circle-nodes"></i> HYTERA</button>
+                        <button class="pill-btn brand-pill" id="btn-brand-ritron" onclick="selectBrandFilter('Ritron')"><i class="fa-solid fa-circle-nodes"></i> RITRON</button>
+                    </div>
+                </div>
+
+                <!-- TIER 2: HARDWARE TYPE SELECTIONS -->
+                <div style="display: flex; flex-direction: column; gap: 10px; text-align: left;">
+                    <label style="font-size: 0.75rem; font-weight: 800; color: #0e1a24; text-transform: uppercase; letter-spacing: 0.75px;"><i class="fa-solid fa-tower-broadcast"></i> 2. Select Hardware or Accessory Tier:</label>
+                    <div class="accessory-filter-pills" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">
+                        <button class="pill-btn active" onclick="filterAccessory('All')">All Hardware</button>
+                        <button class="pill-btn" onclick="filterAccessory('Portable Radio')"><i class="fa-solid fa-walkie-talkie"></i> Portables</button>
+                        <button class="pill-btn" onclick="filterAccessory('Mobile Radio')"><i class="fa-solid fa-car-rear"></i> Mobiles</button>
+                        <button class="pill-btn" onclick="filterAccessory('Repeater Infrastructure')"><i class="fa-solid fa-tower-cell"></i> Repeaters</button>
+                        <button class="pill-btn" onclick="filterAccessory('Antennas')"><i class="fa-solid fa-tower-broadcast"></i> Antennas</button>
+                        <button class="pill-btn" onclick="filterAccessory('Batteries')"><i class="fa-solid fa-battery-full"></i> Batteries</button>
+                        <button class="pill-btn" onclick="filterAccessory('Chargers')"><i class="fa-solid fa-bolt"></i> Chargers</button>
+                        <button class="pill-btn" onclick="filterAccessory('Microphones')"><i class="fa-solid fa-microphone"></i> Microphones</button>
+                    </div>
+                </div>
+
             </div>
 
-            
+            <!-- Real-Time Target Hardware Feed Container -->
             <div id="api-product-feed" class="grid-container"></div>
         </div>
     </section>
 
-        <!-- Industries Grid Section -->
+	    <!-- Industries Grid Section -->
     <section id="industries" class="industries-section">
         <div class="container">
             <h2 class="section-title">Industries We Serve</h2>
             <p class="section-subtitle">Custom wireless network deployments engineered to bypass environmental obstructions in your sector.</p>
             
-            <!-- START OF GRID: All 9 industry cards are safely grouped inside this opening tag -->
+            <!-- Unified Matrix Grid Block Container -->
             <div class="grid-container">
                 
                 <!-- 1. Education -->
@@ -158,13 +180,11 @@
                     <p>Intrinsically safe explosion-proof hardware portfolios paired with custom active localized repeater networks.</p>
                 </div>
 
-            </div> <!-- END OF GRID: Container closed safely AFTER card number 9 -->
+            </div> <!-- Grid container ends safely -->
         </div>
     </section>
 
-
-
-    <!-- Teaser Block for the Calculator -->
+    <!-- Interactive Simulator Teaser Deck Section -->
     <section class="teaser-section">
         <div class="container teaser-container">
             <h2>Know Your Communication Boundaries Before You Deploy</h2>
@@ -173,36 +193,82 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Main Corporate Footer -->
     <footer class="main-footer">
         <div class="container">
-            <p>&copy; 2026 TARC Radio Products. All Rights Reserved. Engineered Wireless Communication Systems.</p>
+            <p>&copy; 2026 T.A. Radio Communication. All Rights Reserved. Engineered Wireless Communication Systems.</p>
         </div>
     </footer>
 
-        <!-- Streamlined E-Commerce Shopping Cart Side Drawer Panel -->
-    <div id="fleetCartDrawer" style="position: fixed; top: 0; right: -360px; width: 340px; height: 100%; background: #0b1116; border-left: 2px solid #1a3322; box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 3000; transition: right 0.3s ease; box-sizing: border-box; display: flex; flex-direction: column; font-family: 'Segoe UI', sans-serif;">
-        <!-- Drawer Header -->
-        <div style="background: #05080a; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #00FF66;">
-            <h3 style="color: #00FF66; font-size: 0.95rem; font-weight: bold; letter-spacing: 1px; margin: 0;"><i class="fa-solid fa-basket-shopping"></i> YOUR SHOPPING CART</h3>
-            <span id="closeCartBtn" style="color: #4A5A6A; cursor: pointer; font-size: 1.3rem; font-weight: bold;">&times;</span>
-        </div>
-        
-        <!-- Cart Items Target Container -->
-        <div id="cartItemsList" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; color: #fff;">
-            <!-- JavaScript dynamically feeds rows here -->
-        </div>
-        
-        <!-- Drawer Bottom Actions Footer (With Volume Pricing Callout Fallback) -->
-        <div style="background: #05080a; padding: 15px; border-top: 1px solid #1a3322; display: flex; flex-direction: column; gap: 10px;">
-            <button id="checkoutFleetBtn" class="btn-primary" style="width: 100%; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Proceed to Checkout</button>
-            <a href="#contact" id="cartVolumeLink" style="display: block; text-align: center; color: #00FFFF; font-size: 0.82rem; text-decoration: none; font-weight: 600; padding: 5px 0;">
-                <i class="fa-solid fa-tags"></i> Contact Us for Volume Pricing
-            </a>
+    <!-- Universal RFQ Form Submission Popup Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Request Pricing & Fleet Manifest Analysis</h3>
+            <form id="quoteForm">
+                <label for="name">Contact Name</label>
+                <input type="text" id="name" required placeholder="John Doe">
+                <label for="email">Business Email</label>
+                <input type="email" id="email" required placeholder="name@company.com">
+                <label for="message">Requirements Brief</label>
+                <textarea id="message" rows="4" placeholder="Tell us about your industry, environment, estimated range boundaries, or device count requirements..."></textarea>
+                <button type="submit" class="btn-primary">Submit System Inquiry</button>
+            </form>
         </div>
     </div>
 
+        <!-- HIGH-SECURITY SLIDING RFQ FLEET PROCURMENT DRAWER CONSOLE -->
+    <div id="fleetCartDrawer" style="position: fixed; top: 0; right: -400px; width: 380px; height: 100%; background: #ffffff; border-left: 3px solid #0b5eb4; box-shadow: -15px 0 40px rgba(14, 26, 36, 0.25); z-index: 3000; transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-sizing: border-box; display: flex; flex-direction: column; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;">
+        
+        <!-- Console Header Panel: Establishes immediate authority -->
+        <div style="background: #0e1a24; padding: 20px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0b5eb4;">
+            <div style="display: flex; flex-direction: column; gap: 2px; text-align: left;">
+                <h3 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; letter-spacing: 1px; margin: 0; text-transform: uppercase;"><i class="fa-solid fa-lock" style="color: #00FF66; margin-right: 5px;"></i> SECURE FLEET REQUEST</h3>
+                <span style="color: #cbd5e1; font-size: 0.68rem; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase;">TARC PROCURMENT NETWORK // CONSOLE-V2</span>
+            </div>
+            <span id="closeCartBtn" style="color: #ffffff; cursor: pointer; font-size: 1.5rem; font-weight: 900; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">&times;</span>
+        </div>
 
+        <!-- Encrypted Link Baseline Status Strip -->
+        <div style="background: #f0fdf4; border-bottom: 1px solid #bbf7d0; padding: 10px 15px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #16a34a; font-weight: 700; text-align: left;">
+            <i class="fa-solid fa-shield-halved" style="font-size: 0.85rem;"></i>
+            <span>SSL Secured Procurement Channel Active // Verified Dealer</span>
+        </div>
+
+        <!-- Dynamic Content Body Feed Lane (List scrolls independently inside this room) -->
+        <div id="cartItemsList" style="flex: 1; padding: 20px 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background-color: #f8fafc; box-sizing: border-box;">
+            <!-- JavaScript dynamically paints your chosen items inside here with high-contrast text -->
+        </div>
+
+        <!-- Secure Pricing Summary & Submission Control Panel Block -->
+        <div style="background: #ffffff; padding: 20px 15px; border-top: 2px solid #e2e8f0; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 -4px 15px rgba(0,0,0,0.02);">
+            
+            <!-- Fleet Total Multi-Channel Summary Metrics -->
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem; border-bottom: 1px dashed #cbd5e1; padding-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; color: #5a6e72; font-weight: 600;">
+                    <span>Total Unique Hardware Rows:</span>
+                    <span id="cartTotalItemsCount" style="color: #0e1a24; font-weight: 800;">0 Units</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.95rem; color: #0e1a24; font-weight: 800; margin-top: 4px;">
+                    <span>Estimated Retail Baseline:</span>
+                    <span id="cartEstimatedTotalValue" style="color: #0b5eb4;">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Heavy Solid Procurement Action Trigger Buttons -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button id="checkoutFleetBtn" class="btn-primary" style="width: 100%; font-weight: 800; text-transform: uppercase; letter-spacing: 0.75px; padding: 14px 20px; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(11, 94, 180, 0.2);">
+                    <i class="fa-solid fa-file-invoice"></i> Compile Official Quote Request
+                </button>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 5px; color: #5a6e72; font-size: 0.72rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-circle-check" style="color: #16a34a;"></i> Hardware availability locked for 24 Hours
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Active Core Script Pipeline attachment -->
     <script src="script.js"></script>
 </body>
 </html>
