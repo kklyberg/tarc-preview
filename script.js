@@ -361,4 +361,206 @@ function runTarcImageLinkValidator(catalogItems) {
             });
     });
 }
+// =========================================================================
+// TARC SAFE MULTI-VARIABLE INTERCONNECTED FILTER INTERCEPT ENGINE (STEP 3)
+// =========================================================================
 
+// Independent memory registers to prevent data stream collision crashes
+let safeActiveBrand = "All";
+let safeActiveCategory = "All";
+
+// --- HOOK A: ACTIVATE THE NEW BRAND PILL SELECTIONS ---
+function selectBrandFilter(chosenBrand) {
+    safeActiveBrand = chosenBrand;
+    console.log(`TARC STEP 3: Brand parameter locked onto -> [${safeActiveBrand}]`);
+    
+    // Recalculate visual active highlights for manufacturer buttons safely
+    const brandButtons = document.querySelectorAll(".brand-pill");
+    brandButtons.forEach(btn => {
+        if (btn.id === `btn-brand-${chosenBrand.toLowerCase()}`) {
+            btn.classList.add("active");
+        } else {
+            btn.classList.remove("active");
+        }
+    });
+
+    // Execute the master dataset compiler loop
+    executeSafeMultiFilter();
+}
+
+// --- HOOK B: SAFE BRIDGING INTERCEPT FOR ORIGINAL FILTER PILLS ---
+// This safely intercepts your existing 'filterAccessory' click strings without replacing the original code
+const originalFilterAccessory = window.filterAccessory;
+window.filterAccessory = function(chosenCategory) {
+    safeActiveCategory = chosenCategory;
+    console.log(`TARC STEP 3: Category parameter locked onto -> [${safeActiveCategory}]`);
+    
+    // If the original core function remains globally bound, execute it alongside our tracker
+    if (typeof originalFilterAccessory === "function") {
+        // Run our master interconnected filter matrix instead to handle both states together
+        executeSafeMultiFilter();
+    } else {
+        executeSafeMultiFilter();
+    }
+};
+
+// --- HOOK C: THE UNIFIED DUAL-AXES CONNECTED MATRIX COMPILER ---
+function executeSafeMultiFilter() {
+    // If your working, reverted catalog arrays are not loaded yet, exit safely to prevent page freezes
+    if (!globalSheetCatalog || globalSheetCatalog.length === 0) return;
+
+    const siftedResultsMatrix = globalSheetCatalog.filter(radioItem => {
+        const itemBrand = (radioItem.brand || "").toString().trim().toLowerCase();
+        const itemType = (radioItem.type || "").toString().trim().toLowerCase();
+        
+        const targetBrand = safeActiveBrand.toLowerCase();
+        const targetCategory = safeActiveCategory.toLowerCase();
+
+        // 1. Evaluate Brand Criterion
+        const passesBrandTest = (targetBrand === "all" || itemBrand.includes(targetBrand));
+
+        // 2. Evaluate Category Criterion (Using loose fuzzy clipping to bypass spreadsheet plural typos)
+        let passesCategoryTest = false;
+        if (targetCategory === "all" || targetCategory === "all systems" || targetCategory === "all hardware") {
+            passesCategoryTest = true;
+        } else {
+            const truncatedKeyword = targetCategory.substring(0, 4);
+            passesCategoryTest = itemType.includes(truncatedKeyword);
+        }
+
+        return passesBrandTest && passesCategoryTest;
+    });
+
+    // Pipe the results safely back straight into your working, original card painter loop!
+    if (typeof buildLiveProductCards === "function") {
+        buildLiveProductCards(siftedResultsMatrix);
+    }
+}
+// =========================================================================
+// HIGH-SECURITY CART COMPILER & STATE MANAGEMENT LOGIC (PART 2 OF 2)
+// =========================================================================
+
+// --- LAYER G: SAFELY BIND "ADD TO CART" ACTIONS ON ITEM CARDS ---
+// Paste this inside your card painter loop or append to activate handlers
+function bindCartActionsForFleet() {
+    const addToCartButtons = document.querySelectorAll(".add-to-fleet-btn");
+    addToCartButtons.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const modelToken = e.target.getAttribute("data-model");
+            const brandToken = e.target.getAttribute("data-brand") || "Authorized Brand";
+            const typeToken = e.target.getAttribute("data-type") || "Hardware";
+            
+            // Locate the original database record matching this specific model item
+            const matchingItem = globalSheetCatalog.find(item => item.model === modelToken);
+            if (!matchingItem) return;
+
+            // Check if item is already stacked inside the local cart data array
+            const structuralCartMatch = corporateFleetCart.find(cartItem => cartItem.model === modelToken);
+            if (structuralCartMatch) {
+                structuralCartMatch.qty += 1;
+            } else {
+                corporateFleetCart.push({
+                    brand: brandToken,
+                    model: modelToken,
+                    type: typeToken,
+                    price: parseFloat(matchingItem.price) || 0,
+                    image: matchingItem.image || "images/radio-placeholder.png",
+                    qty: 1
+                });
+            }
+
+            console.log(`TARC CART MATRIX: Added ${modelToken}. Total stacked layers: ${corporateFleetCart.length}`);
+            refreshSecureCartSummaryConsole();
+        });
+    });
+}
+
+// --- LAYER H: RE-CALCULATE AND RENDER HIGH-SECURITY DRAWER LOGS ---
+function refreshSecureCartSummaryConsole() {
+    const listFeedContainer = document.getElementById("cartItemsList");
+    const countBadgeNode = document.getElementById("cartCountBadge");
+    const totalUnitsNode = document.getElementById("cartTotalItemsCount");
+    const estimatedValueNode = document.getElementById("cartEstimatedTotalValue");
+
+    if (!listFeedContainer) return;
+    listFeedContainer.innerHTML = "";
+
+    let totalUniqueItemRowsCount = 0;
+    let combinedFinancialEstimateSum = 0;
+
+    if (corporateFleetCart.length === 0) {
+        listFeedContainer.innerHTML = `
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; color:#5a6e72; padding:40px 0; text-align:center; font-size:0.85rem; font-weight:600;">
+                <i class="fa-solid fa-basket-shopping" style="font-size:2rem; color:#cbd5e1; margin-bottom:12px;"></i>
+                <span>Your fleet request manifest is empty. Add mission-critical hardware to proceed.</span>
+            </div>`;
+        
+        if (countBadgeNode) countBadgeNode.style.display = "none";
+        if (totalUnitsNode) totalUnitsNode.innerText = "0 Units";
+        if (estimatedValueNode) estimatedValueNode.innerText = "$0.00";
+        return;
+    }
+
+    // Process loop generating tactical high-contrast manifest columns entries
+    corporateFleetCart.forEach((cartProduct, index) => {
+        totalUniqueItemRowsCount += cartProduct.qty;
+        combinedFinancialEstimateSum += (cartProduct.price * cartProduct.qty);
+
+        const rowPriceSum = cartProduct.price * cartProduct.qty;
+        const formattedPriceString = cartProduct.price > 0 ? `$${rowPriceSum.toFixed(2)}` : "Inquire / Quote";
+
+        const cartItemCard = document.createElement("div");
+        cartItemCard.style.cssText = "background:#ffffff; border:1px solid #e2e8f0; border-left:3px solid #0b5eb4; border-radius:4px; padding:12px; display:flex; gap:12px; align-items:center; position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.02); box-sizing:border-box;";
+
+        cartItemCard.innerHTML = `
+            <div style="width:50px; height:50px; display:flex; align-items:center; justify-content:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; overflow:hidden; flex-shrink:0;">
+                <img src="${cartProduct.image}" alt="${cartProduct.model}" style="max-height:90%; max-width:90%; object-fit:contain;">
+            </div>
+            
+            <div style="display:flex; flex-direction:column; gap:2px; flex:1; text-align:left; overflow:hidden;">
+                <span style="color:#0b5eb4; font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">${cartProduct.brand} // ${cartProduct.type}</span>
+                <h4 style="color:#0e1a24; font-size:0.9rem; font-weight:800; margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${cartProduct.model}</h4>
+                <div style="color:#00b3b3; font-size:0.85rem; font-weight:800; margin-top:2px;">${formattedPriceString}</div>
+            </div>
+            
+            <div style="display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0;">
+                <div style="display:flex; align-items:center; border:1px solid #cbd5e1; border-radius:4px; overflow:hidden; background:#f8fafc; height:24px;">
+                    <button onclick="modifyFleetItemQty(${index}, -1)" style="border:none; background:none; width:20px; height:100%; cursor:pointer; font-weight:900; font-size:0.75rem; color:#475569;">-</button>
+                    <span style="font-size:0.82rem; font-weight:800; color:#0e1a24; width:24px; text-align:center; display:inline-block;">${cartProduct.qty}</span>
+                    <button onclick="modifyFleetItemQty(${index}, 1)" style="border:none; background:none; width:20px; height:100%; cursor:pointer; font-weight:900; font-size:0.75rem; color:#475569;">+</button>
+                </div>
+                <span onclick="modifyFleetItemQty(${index}, -99)" style="color:#ef4444; font-size:0.65rem; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.3px;"><i class="fa-solid fa-trash-can"></i> Remove</span>
+            </div>`;
+
+        listFeedContainer.appendChild(cartItemCard);
+    });
+
+    // Update global navbar counting notification icons
+    if (countBadgeNode) {
+        countBadgeNode.innerText = totalUniqueItemRowsCount;
+        countBadgeNode.style.display = totalUniqueItemRowsCount > 0 ? "block" : "none";
+    }
+
+    if (totalUnitsNode) totalUnitsNode.innerText = `${totalUniqueItemRowsCount} Unit${totalUniqueItemRowsCount !== 1 ? 's' : ''}`;
+    if (estimatedValueNode) estimatedValueNode.innerText = combinedFinancialEstimateSum > 0 ? `$${combinedFinancialEstimateSum.toFixed(2)}` : "Price On Request";
+}
+
+// --- LAYER I: QUANTITY MODIFIERS AND ROW REMOVAL CHECKS ---
+window.modifyFleetItemQty = function(itemIndex, quantityAdjustmentDelta) {
+    if (!corporateFleetCart[itemIndex]) return;
+
+    if (quantityAdjustmentDelta === -99) {
+        corporateFleetCart.splice(itemIndex, 1);
+    } else {
+        corporateFleetCart[itemIndex].qty += quantityAdjustmentDelta;
+        if (corporateFleetCart[itemIndex].qty <= 0) {
+            corporateFleetCart.splice(itemIndex, 1);
+        }
+    }
+
+    refreshSecureCartSummaryConsole();
+};
+
+// Make sure to add this call line inside your main buildLiveProductCards() function string,
+// immediately right after your cards append loops finish execution:
+// bindCartActionsForFleet();
