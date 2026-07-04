@@ -1,94 +1,81 @@
 /* =========================================================================
-   UNIFIED BRAND THEME SHEET & RESPONSIVE GRID MATRIX (style.css)
+   T.A. RADIO COMMUNICATION ELECTRIFIED HIGH-LUMINOSITY THEME (PART 1)
    ========================================================================= */
 :root {
-    --primary-blue: #0B5EB4; /* TARC Metallic Blue */
-    --steel-slate: #4A5A6A;   /* TARC Accent Gray */
-    --midnight-navy: #111C24; /* Background Slate Blue */
-    --light-ice: #F4F7F9;     /* Card Canvas tint */
-    --white: #FFFFFF;
+    /* The exact, deep ink-blue background color sampled from the outer edges of your logo */
+    --logo-edge-dark: #0a0e14;     
+    --electric-blue: #0b5eb4;       /* Core corporate electric blue */
+    --electric-cyan: #00ffff;       /* High-voltage radioactive cyan */
+    --pure-white: #ffffff;          /* Crisp text white */
+    --subtext-silver: #5a6e72;      /* High-utility paragraph gray */
+    --midnight-navy: #0e1a24;       /* Sharp text visibility navy */
+    --light-clean-bg: #f8fafc;     /* Clean corporate light-mode backing */
 }
 
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
+body { 
+    background-color: var(--light-clean-bg); 
+    color: var(--midnight-navy); 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding-top: 110px;            /* FIXED: Balanced cushion space to clear the taller nested navbar layout */
+    line-height: 1.6;
 }
 
-html { scroll-behavior: smooth; }
-body { background-color: var(--white); color: var(--midnight-navy); line-height: 1.6; padding-top: 70px; }
-.container { width: 92%; max-width: 1200px; margin: 0 auto; }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-/* Fixed Top Navigation Bar */
+/* --- MASTER CORPORATE FIXED NAVIGATION DECK (OPAQUE CORRECTION) --- */
 .main-header {
-    background-color: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; padding: 8px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    background-color: var(--white) !important; /* FIXED: Absolute opaque solid backing blocks all transparency leak */
+    border-bottom: 3px solid var(--electric-blue);
+    display: flex;
+    flex-direction: column;         /* Integrates your contact bar and menu cleanly into one structural block */
 }
-.header-container { display: flex; justify-content: space-between; align-items: center; }
-.logo img { height: 50px; width: auto; display: block; }
-.nav-links { display: flex; align-items: center; }
+
 .nav-links a {
-    text-decoration: none; color: var(--midnight-navy); margin-left: 25px;
-    font-weight: 600; font-size: 0.95rem; transition: color 0.2s ease;
+    color: var(--midnight-navy);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 20px;
+    font-size: 0.92rem;
+    transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--primary-blue); }
-.nav-calc-link { color: var(--primary-blue) !important; display: flex; align-items: center; gap: 6px; }
-
-/* Reusable Interactive UI Action Buttons */
-.btn-primary {
-    background-color: var(--primary-blue); color: var(--white) !important;
-    padding: 10px 22px; border-radius: 4px; border: none; cursor: pointer;
-    font-weight: 600; font-size: 0.9rem; transition: background 0.2s ease;
-}
-.btn-primary:hover { background-color: #084687; }
-.btn-secondary {
-    border: 2px solid var(--white); color: var(--white); text-decoration: none;
-    padding: 9px 22px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s ease;
-}
-.btn-secondary:hover { background-color: var(--white); color: var(--midnight-navy); }
-
-/* =========================================================================
-   STRICT DYNAMIC RADAR TEXT EXPANSION ENGINE (FIXED CONTEXT)
-   ========================================================================= */
-/* =========================================================================
-   STRICT RESPONSIVE HERO SECTIONS (HOMEPAGE ISOLATED)
-   ========================================================================= */
-/* The base section rules shared by BOTH homepage and industry pages */
-.hero-section {
-    background-color: #0b1116 !important;
-    height: 75vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    text-align: center;
-    overflow: hidden;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
+.nav-links a:hover {
+    color: var(--electric-blue);
 }
 
-/* =========================================================================
-   HIGH-LUMINOSITY HERO SECTION (OFF-CENTERED VERTICAL SPLIT)
-   ========================================================================= */
+/* --- THE SEAMLESS HIGH-LUMINOSITY HERO BLENDER ENGINE (CENTERED) --- */
 #home.hero-section {
-    background: radial-gradient(
+    background-color: var(--logo-edge-dark) !important;
+    background-image: radial-gradient(
         circle at center,
-        rgba(11, 17, 22, 0.12) 0%,    
-        rgba(11, 17, 22, 0.68) 45%,   
-        rgba(11, 17, 22, 0.98) 100%   
+        rgba(10, 14, 20, 0.05) 0%,    
+        rgba(10, 14, 20, 0.45) 50%,   
+        rgba(10, 14, 20, 0.98) 100%   
     ), 
-    url('tarc-logo1.png') no-repeat center 62%; /* FIXED: Offsets the logo down slightly to sit perfectly under the headlines */
+    url('tarc-logo1.png');
     
+    background-repeat: no-repeat !important;
+    background-position: center 62% !important;
     background-size: min(85vw, 620px) auto !important; 
-    box-shadow: inset 0 -80px 100px rgba(11, 94, 180, 0.08);
+    box-shadow: inset 0 -50px 80px rgba(0, 255, 255, 0.12);
     
-    height: 75vh;
+    height: 70vh;
     display: flex;
-    align-items: flex-start;                    /* FIXED: Forces contents to anchor tightly to the top instead of center */
+    align-items: flex-start;                    
     justify-content: center;
-    color: var(--white);
-    text-align: center;
+    text-align: center;            /* FIXED: Spatially forces all child headers to center-align automatically */
     overflow: hidden;
-    padding-top: 55px;                          /* Clear runway boundary right under your fixed navbar line */
+    padding-top: 35px;
 }
 
 .hero-content {
@@ -97,185 +84,220 @@ body { background-color: var(--white); color: var(--midnight-navy); line-height:
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;           /* FIXED: Center anchors your text blocks inside your responsive viewport container */
     justify-content: center;
-    margin-top: 15px;                           /* Snaps your entire text group upward into the clear header window */
+    text-align: center;            /* FIXED: Forces perfect symmetry on paragraph rows text wraps */
 }
 
-/* =========================================================================
-   STRICT DYNAMIC RADAR TEXT EXPANSION ENGINE (SINGLE-STREAM TIMELINE)
-   ========================================================================= */
-/* =========================================================================
-   ZERO-FLASH RADAR TEXT EXPANSION ENGINE (IRONCLAD INITIALIZATION)
-   ========================================================================= */
 .hero-content h1 {
-    font-size: 3.4rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
+    font-size: 3.2rem;
     font-weight: 900;
     text-transform: uppercase;
-    color: #FFFFFF;
-    
-    /* 1. HARD CORRECTION: Forces the text to be completely invisible on load */
-    opacity: 0;
-    
-    /* 2. Standard crisp base shadows to avoid any post-render flickering */
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.95),
-                 0 0 25px rgba(11, 94, 180, 0.65), 
-                 0 0 50px rgba(0, 255, 102, 0.25);
-                 
-    /* 3. TWO INDEPENDENT TIMELINES: 
-       - tarcForwardBurst runs ONCE over 4.5s to glide out. 'forwards' preserves the final 100% visible frame state.
-       - tarcPermanentPulse loops INFINITELY matching the exact end frame properties to prevent any jump glitches. */
-    animation: tarcForwardBurst 4.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards,
-               tarcPermanentPulse 4s ease-in-out 4.5s infinite alternate;
-               
-    backface-visibility: hidden;
-    will-change: transform, letter-spacing, text-shadow, opacity;
+    color: var(--pure-white);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95), 0 0 15px rgba(0, 255, 255, 0.4);
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+    text-align: center;
 }
 
 .hero-content p {
     font-size: 1.15rem;
-    max-width: 720px;
-    margin: 0 auto;
-    color: #cbd5e1;
-    line-height: 1.5;
-    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.95);
-    
-    /* Forces subtext to stay completely hidden until its staggered timer triggers */
-    opacity: 0;
-    
-    animation: tarcSubtextOnce 3.5s cubic-bezier(0.1, 0.8, 0.2, 1) 1.2s forwards;
-    backface-visibility: hidden;
-    will-change: opacity, transform;
+    max-width: 850px;
+    color: #f1f5f9;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+    font-weight: 500;
+    text-align: center;            /* FIXED: Clean layout symmetry across your glowing logo waveforms */
 }
 
 /* =========================================================================
-   TIMELINE 1: THE INITIAL ONE-TIME FORWARD LAUNCH
+   CLEAN COCKPIT MARKETPLACE GRID & ACCESSORY PILLS (PART 2)
    ========================================================================= */
-@keyframes tarcForwardBurst {
-    0% {
-        transform: scale(0.88);
-        letter-spacing: -2px;
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1.02);
-        letter-spacing: 3px;
-        opacity: 1;
-    }
+
+/* --- AUTHORIZED PRODUCT CATALOG CONTROLS --- */
+.catalog-section {
+    padding: 80px 0;
+    background-color: var(--light-clean-bg);
 }
 
-@keyframes tarcSubtextOnce {
-    0% {
-        transform: translateY(12px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #0f172a;
+    margin-bottom: 8px;
+    text-align: left;
+}
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--subtext-silver);
+    margin-bottom: 35px;
+    text-align: left;
 }
 
-/* =========================================================================
-   TIMELINE 2: THE INFINITE BREATHING WAVE (PERFECTLY SYNCHRONIZED)
-   ========================================================================= */
-@keyframes tarcPermanentPulse {
-    0% {
-        /* Matches your 100% launch frame EXACTLY to eliminate the midday jump glitch */
-        transform: scale(1.02);
-        letter-spacing: 3px;
-        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.95),
-                     0 0 25px rgba(11, 94, 180, 0.65), 
-                     0 0 50px rgba(0, 255, 102, 0.25);
-    }
-    100% {
-        /* Gently expands the neon back-lighting over a slow 4-second rhythm */
-        transform: scale(1.02);
-        letter-spacing: 3px;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95),
-                     0 0 38px rgba(11, 94, 180, 0.85), 
-                     0 0 65px rgba(0, 255, 102, 0.40);
-    }
+/* The Clean Unified Filter Hub Blueprint Container */
+.search-filter-container {
+    background: var(--pure-white);
+    border: 2px solid rgba(11, 94, 180, 0.12);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 
-
-/* Catalog Search Inputs and Pills */
-.catalog-section { padding: 80px 0; background-color: var(--light-ice); text-align: center; }
-.section-title { font-size: 2.4rem; font-weight: 800; color: var(--midnight-navy); margin-bottom: 10px; letter-spacing: -0.5px; }
-.section-subtitle { color: var(--steel-slate); margin-bottom: 40px; font-size: 1.05rem; }
-
-.search-filter-container { max-width: 650px; margin: 0 auto 50px; position: relative; }
-#catalogSearch {
-    width: 100%; padding: 14px 20px 14px 50px; font-size: 1.05rem; border: 2px solid #cbd5e1;
-    border-radius: 30px; background-color: var(--white); outline: none; transition: all 0.3s ease;
-}
-#catalogSearch:focus { border-color: var(--primary-blue); box-shadow: 0 4px 20px rgba(11, 94, 180, 0.12); }
-.search-icon { position: absolute; left: 20px; top: 18px; color: var(--steel-slate); font-size: 1.1rem; }
-
-.accessory-filter-pills { margin-top: 20px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+/* The Interactive Selector Pills (Tuned to Your Corporate Blue) */
 .pill-btn {
-    background-color: var(--white); border: 1px solid #cbd5e1; color: var(--midnight-navy);
-    padding: 7px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+    background: var(--pure-white);
+    border: 2px solid var(--electric-blue);
+    color: var(--electric-blue);
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
-.pill-btn:hover { background-color: var(--primary-blue); color: var(--white); border-color: var(--primary-blue); }
+.pill-btn:hover, .pill-btn.active {
+    background: var(--electric-blue);
+    color: var(--pure-white);
+}
 
-/* THREE-COLUMN DYNAMIC PRODUCT CATALOG GRID MATRIX */
-#api-product-feed, .grid-container { 
-    display: grid !important; 
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important; 
-    gap: 30px !important; 
+/* --- THE HARDWARE GRID (GRID BOUNDARIES RE-ESTABLISHED) --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
     width: 100%;
+    box-sizing: border-box;
 }
 
-/* Individual Content Display Cards Style */
-.card {
-    background-color: var(--white); padding: 35px 25px; border-radius: 8px; text-align: left;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-bottom: 4px solid transparent; transition: all 0.25s ease;
-    display: flex; flex-direction: column; justify-content: space-between;
+/* The Balanced Product Layout Card (Brand Anchored on Top) */
+.api-product-card {
+    background: var(--pure-white) !important;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid var(--electric-blue); /* Crown border matches your logo's corporate blue */
+    border-radius: 6px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
 }
-.card-interactive:hover { transform: translateY(-4px); border-bottom-color: var(--primary-blue); box-shadow: 0 10px 25px rgba(0,0,0,0.06); cursor: pointer; }
-.card-icon { font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 20px; display: inline-block; }
-.card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: var(--midnight-navy); }
-.card p { color: var(--steel-slate); font-size: 0.92rem; }
-
-/* Embedded Google Sheet Card Modifications */
-.api-product-card { border-top: 4px solid var(--steel-slate); position: relative; padding-top: 45px !important; border-bottom: none !important; }
-.api-product-card:hover { border-top-color: var(--primary-blue); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-.product-badge { position: absolute; top: 15px; left: 25px; background: #e2e8f0; color: var(--midnight-navy); padding: 2px 8px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; border-radius: 3px; }
-.product-model { font-size: 1.3rem; margin-bottom: 2px; }
-.product-type-label { display: inline-block; font-size: 0.82rem; color: var(--primary-blue); font-weight: 600; margin-bottom: 12px; }
-.product-target { font-size: 0.82rem; background-color: var(--light-ice); padding: 5px 10px; border-radius: 4px; margin-bottom: 12px; color: var(--midnight-navy); }
-.product-spec-list { list-style: none; text-align: left; margin-top: 8px; margin-bottom: 15px; }
-.product-spec-list li { font-size: 0.88rem; color: var(--steel-slate); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
-.product-spec-list i { color: #10b981; font-size: 0.85rem; }
-
-/* Marketing Teaser Breakout Panel */
-.teaser-section {
-    background: linear-gradient(rgba(11, 94, 180, 0.95), rgba(8, 70, 135, 0.95)), url('https://unsplash.com') no-repeat center center/cover;
-    padding: 60px 0; text-align: center; color: var(--white); display: flex; justify-content: center;
+.api-product-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--electric-blue);
+    box-shadow: 0 10px 25px rgba(11, 94, 180, 0.1);
 }
-.teaser-container { max-width: 750px; }
-.teaser-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; }
-.teaser-section p { font-size: 1.05rem; margin-bottom: 25px; color: #cbd5e1; }
 
-.industries-section { padding: 80px 0; background-color: var(--white); text-align: center; }
-.main-footer { background-color: var(--midnight-navy); color: var(--white); text-align: center; padding: 25px 0; font-size: 0.85rem; opacity: 0.9; }
+/* --- HEAVY SOLID FILL VIBRANT ACTION BUTTONS --- */
+.btn-primary {
+    background: var(--electric-blue) !important;
+    color: var(--pure-white) !important; /* Heavy solid fill forces crisp, white legibility instantly */
+    border: none;
+    padding: 12px 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-primary:hover {
+    background: #094b91 !important;
+}
 
-/* Pop-up Modal Windows styles */
-.modal {
-    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(17, 28, 36, 0.65); align-items: center; justify-content: center;
+.btn-secondary {
+    background: #00b3b3 !important; /* Rich solid high-contrast electric cyan fill */
+    color: #0f172a !important;      /* Deep contrast dark text matches the button background beautifully */
+    border: none;
+    padding: 10px 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
 }
-.modal-content {
-    background-color: var(--white); padding: 35px; border-radius: 6px; width: 90%; max-width: 480px;
-    position: relative; animation: modalFadeIn 0.3s ease; color: var(--midnight-navy); text-align: left;
+.btn-secondary:hover {
+    background: #009999 !important;
 }
-@keyframes modalFadeIn { from { opacity:0; transform:translateY(-15px); } to { opacity:1; transform:translateY(0); } }
-.close-btn { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: var(--steel-slate); }
-.close-btn:hover { color: var(--midnight-navy); }
-.modal h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; }
-form label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; color: var(--steel-slate); }
-form input, form textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; outline: none; font-size: 0.95rem; }
-form input:focus, form textarea:focus { border-color: var(--primary-blue); }
-form button { width: 100%; margin-top: 20px; }
+
+/* --- INDUSTRIES SERVER GRID PORTS --- */
+.industries-section {
+    padding: 80px 0;
+    background-color: #f1f5f9; /* Soft ice background row alternative */
+    border-top: 1px solid #e2e8f0;
+}
+.card-interactive {
+    background: var(--pure-white);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 35px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+}
+.card-interactive:hover {
+    border-color: #00b3b3;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 179, 179, 0.08);
+}
+.card-icon {
+    font-size: 2.2rem;
+    color: var(--electric-blue);
+    margin-bottom: 15px;
+}
+/* =========================================================================
+   DE-BOXED UNIFIED MARKETPLACE PILL TUNERS (PART 2)
+   ========================================================================= */
+
+/* Elegant open-canvas input field focus animations */
+#catalogSearch:focus {
+    border-color: var(--electric-blue) !important;
+    box-shadow: 0 0 15px rgba(11, 94, 180, 0.08);
+    background-color: var(--white) !important;
+}
+
+/* Polished light-mode interactive filter buttons */
+.pill-btn {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    color: #475569;
+    padding: 10px 18px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.15s ease-in-out;
+}
+
+/* Hover thresholds */
+.pill-btn:hover {
+    border-color: var(--electric-blue);
+    color: var(--electric-blue);
+    background-color: #f8fafc;
+}
+
+/* Active clamping states */
+.pill-btn.active {
+    background-color: var(--electric-blue) !important;
+    border-color: var(--electric-blue) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(11, 94, 180, 0.15);
+}
+
+/* Dedicated styling layer explicitly formatting your top manufacturer tags */
+.brand-pill {
+    border: 2px solid var(--electric-blue);
+    color: var(--electric-blue);
+    background-color: #ffffff;
+}
+.brand-pill:hover, .brand-pill.active {
+    background-color: var(--electric-blue) !important;
+    color: #ffffff !important;
+}
