@@ -157,32 +157,71 @@
         }
 
 
-        // --- 2. UNBLOCKED GOOGLE SHEET DATALINK CONNECTOR ---
-        async function fetchUniversalCatalogFeed() {
-            try {
-                console.log("📡 CONNECTING: Streaming database rows from central distribution macro...");
-                const response = await fetch(LIVE_STREAM_URL);
-                if (!response.ok) throw new Error("Remote pipeline handshake failure.");
-                
-                const rawSheetData = await response.json();
-                
-                // MULTI-PAGE FILTER VECTOR: Dynamically isolates rows matching the current brand parameter
-                masterSheetInventoryFeed = rawSheetData.filter(radioItem => {
-                    const rowBrandString = (radioItem.brand || radioItem.Brand || "").toString().trim().toLowerCase();
-                    return rowBrandString === activeRouteBrandToken || rowBrandString.includes(activeRouteBrandToken);
-                });
-                
-                console.log(`✓ PORTAL SYNC SUCCESS: Loaded ${masterSheetInventoryFeed.length} matching rows for vector [${activeRouteBrandToken}].`);
-                executeLiveMatrixSift();
-                
-            } catch (err) {
-                console.error("❌ CRITICAL DISCONNECT: Unable to map remote matrix lanes.", err);
-                document.getElementById("catalog-feed-grid").innerHTML = `
-                    <div style="grid-column: 1/-1; color:#ff5555; font-weight:bold; text-align:center; padding:40px 0;">
-                        <i class="fa-solid fa-triangle-exclamation"></i> SERVER DISCONNECT. PLEASE REFRESH VIEW (CTRL + F5).
-                    </div>`;
-            }
+        /// --- 2. HIGH-SPEED CORS COMPLIANT DATA FETCH PIPELINE WITH DUAL-LAYER CACHING ---
+async function fetchUniversalCatalogFeed() {
+    const STORAGE_CACHE_KEY = "tarc_inventory_cache_feed";
+    const CACHE_TIMESTAMP_KEY = "tarc_inventory_cache_timestamp";
+    const TEN_MINUTES_IN_MS = 10 * 60 * 1000; // Background refresh check interval
+
+    const cachedDataString = localStorage.getItem(STORAGE_CACHE_KEY);
+    const cachedTimestampString = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+    const currentTimeStamp = Date.now();
+
+    // INSTANT LOADING PASS: If a browser cache exists, filter and draw cards immediately (5ms)
+    if (cachedDataString && cachedTimestampString) {
+        if ((currentTimeStamp - parseInt(cachedTimestampString)) < TEN_MINUTES_IN_MS) {
+            const fullCachedInventory = JSON.parse(cachedDataString);
+            
+            // Apply your multi-page filter vector directly to the fast local data
+            masterSheetInventoryFeed = fullCachedInventory.filter(radioItem => {
+                const rowBrandString = (radioItem.brand || radioItem.Brand || "").toString().trim().toLowerCase();
+                return rowBrandString === activeRouteBrandToken || rowBrandString.includes(activeRouteBrandToken);
+            });
+
+            console.log(`⚡ TARC CACHE: Served ${masterSheetInventoryFeed.length} matching rows directly from browser storage.`);
+            executeLiveMatrixSift();
+            return; // Completely bypasses Google App Script cold start lag!
         }
+    }
+
+    try {
+        console.log("📡 CONNECTING: Local cache clear or expired. Syncing with live spreadsheet macro...");
+        const networkResponse = await fetch(LIVE_STREAM_URL);
+        if (!networkResponse.ok) throw new Error("Remote pipeline handshake failure.");
+        
+        const freshRawSheetData = await networkResponse.json();
+        
+        // Commit the complete raw inventory data payload into your browser storage memory vault
+        localStorage.setItem(STORAGE_CACHE_KEY, JSON.stringify(freshRawSheetData));
+        localStorage.setItem(CACHE_TIMESTAMP_KEY, currentTimeStamp.toString());
+        console.log("✓ GLOBAL CACHE SYNCED: Fresh rows saved to device storage memory.");
+
+        // Isolate your brand inventory match tracks from the new payload
+        masterSheetInventoryFeed = freshRawSheetData.filter(radioItem => {
+            const rowBrandString = (radioItem.brand || radioItem.Brand || "").toString().trim().toLowerCase();
+            return rowBrandString === activeRouteBrandToken || rowBrandString.includes(activeRouteBrandToken);
+        });
+
+        executeLiveMatrixSift();
+        
+    } catch (err) {
+        console.error("❌ TIMEOUT: Fallback asset recovery active.", err);
+        if (cachedDataString) {
+            const fullCachedInventory = JSON.parse(cachedDataString);
+            masterSheetInventoryFeed = fullCachedInventory.filter(radioItem => {
+                const rowBrandString = (radioItem.brand || radioItem.Brand || "").toString().trim().toLowerCase();
+                return rowBrandString === activeRouteBrandToken || rowBrandString.includes(activeRouteBrandToken);
+            });
+            executeLiveMatrixSift();
+        } else {
+            document.getElementById("catalog-feed-grid").innerHTML = `
+                <div style="grid-column: 1/-1; color:#ff5555; font-weight:bold; text-align:center; padding:40px 0;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> SERVER DISCONNECT. PLEASE REFRESH VIEW (CTRL + F5).
+                </div>`;
+        }
+    }
+}
+
         // --- 3. DYNAMIC CATEGORY AND INPUT SIFTER (CASE-INSULATED) ---
         window.filterCatalogCategory = function(chosenTier) {
             activeSelectedCategory = chosenTier;
