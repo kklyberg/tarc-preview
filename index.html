@@ -4,50 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T.A. Radio Communication | Commercial Two-Way Wireless Networks</title>
+    <!-- Relative paths cleanly link back to your core homepage styles -->
     <link rel="stylesheet" href="style.css">
-    <!-- RESTORED: Secure open-source Font Awesome icon CDN link. Broken cloudflare address is removed. -->
+    <!-- FIXED: Replaced the broken cloudflare link with the official, unblocked Font Awesome Icon CDN link -->
     <link rel="stylesheet" href="https://cloudflare.com">
-	</head>
-<body>
-    <!-- Professional Fixed Top Corporate Branding Header Assembly -->
-    <!-- FIXED: background-color uses an absolute hex string (#ffffff) and !important to lock a solid white shield in place permanently -->
-    <header class="main-header" style="position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.08); background-color: #ffffff !important;">
+</head>
+<body id="top-viewport" style="padding-top: 110px; margin: 0; background-color: #f8fafc;">
+
+       <!-- Professional Fixed Top Corporate Branding Header Assembly -->
+    <!-- FIXED: Locked solid white background shield prevents transparency leaks on scroll -->
+    <header class="main-header" style="position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.08); background-color: #ffffff !important; display: flex; flex-direction: column;">
         
-        <!-- Tactical Contact Bar Top Strip: Pinned directly inside the main opaque header wrapper -->
+        <!-- Contact Bar Top Strip -->
         <div style="background-color: #0e1a24; color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600; padding: 8px 0; border-bottom: 1px solid rgba(11, 94, 180, 0.3); width: 100%;">
-            <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                <div>
-                    <i class="fa-solid fa-location-dot" style="color: #00FF66; margin-right: 4px;"></i> 
-                    T.A. Radio Communication | 700 S John Rodes Blvd, Melbourne, FL 32904
-                </div>
-                <div>
-                    <a href="tel:3217254824" style="color: #00FFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-phone-volume"></i> (321) 725-4824
-                    </a>
-                </div>
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; box-sizing: border-box;">
+                <div><i class="fa-solid fa-location-dot" style="color: #00FF66; margin-right: 4px;"></i> 30+ Years of Certified Wireless Expertise | 700 S John Rodes Blvd, Melbourne, FL 32904</div>
+                <div><a href="tel:3217254824" style="color: #00FFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; font-weight: 600;"><i class="fa-solid fa-phone-volume"></i> (321) 725-4824</a></div>
             </div>
         </div>
 
-        <!-- Core Brand Navigation & Shopping Cart Drawer Toggle Line -->
-        <div style="padding: 12px 0; width: 100%; background-color: #ffffff !important;">
-            <div class="container header-container" style="display: flex; justify-content: space-between; align-items: center;">
-
+        <!-- Main Navigation Bar Row with Embedded Dropdown Style Attributes -->
+        <div style="padding: 12px 0; width: 100%; background-color: #ffffff !important; box-sizing: border-box;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;">
                 <div class="logo">
-                    <img src="tarc-logo.png" alt="T.A. Radio Communication Logo" style="height: 50px; width: auto; display: block;">
+                    <img src="tarc-logo.png" alt="TARC Logo" style="height: 50px; width: auto; display: block; cursor: pointer;" onclick="window.location.href='#top-viewport';">
                 </div>
-                <nav class="nav-links">
-                    <a href="#home">Home</a>
-                    <a href="#catalog">Product Catalog</a>
-                    <a href="#industries">Industries Served</a>
-                    <a href="calculator.html" class="nav-calc-link"><i class="fa-solid fa-tower-broadcast"></i> RF Link Sim</a>
-                    <a href="#" id="cartToggleBtn" style="color: var(--primary-blue); position: relative; font-weight: bold; margin-left: 25px; text-decoration: none;">
-                        <i class="fa-solid fa-cart-shopping"></i> Shopping Cart 
-                        <span id="cartCountBadge" style="background: #ff5555; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.7rem; position: absolute; top: -10px; right: -15px; font-weight: bold; display: none;">0</span>
-                    </a>
+                
+                <nav class="nav-links" style="display: flex; align-items: center;">
+                    <a href="#top-viewport" style="color: #0e1a24; text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.92rem;">Home</a>
+                    
+                    <!-- NEW: STANDALONE BRAND STORES NAVBAR DROP DOWN DROPS COMPILING LOOPS -->
+                    <div class="dropdown" style="margin-left: 20px; position: relative; display: inline-block;">
+                        <a href="#" style="color: #0e1a24; text-decoration: none; font-weight: 700; font-size: 0.92rem; display: flex; align-items: center; gap: 4px;">Brand Showrooms <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; color:#0b5eb4;"></i></a>
+                        <!-- CSS classes native to your global stylesheet reveal this block on hover -->
+                        <div class="dropdown-content" style="display: none; position: absolute; background-color: #ffffff; min-width: 210px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1); z-index: 2000; border-top: 3px solid #0b5eb4; border-radius: 0 0 4px 4px;">
+                            <a href="catalog.html?brand=kenwood" style="color: #0e1a24; padding: 12px 16px; text-decoration: none; display: block; font-weight: 700; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9;"><i class="fa-solid fa-store" style="color:#0b5eb4; margin-right:6px;"></i> Kenwood Portfolio</a>
+                            <a href="catalog.html?brand=icom" style="color: #0e1a24; padding: 12px 16px; text-decoration: none; display: block; font-weight: 700; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9;"><i class="fa-solid fa-store" style="color:#0b5eb4; margin-right:6px;"></i> Icom Portfolio</a>
+                            <a href="catalog.html?brand=hytera" style="color: #0e1a24; padding: 12px 16px; text-decoration: none; display: block; font-weight: 700; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9;"><i class="fa-solid fa-store" style="color:#0b5eb4; margin-right:6px;"></i> Hytera Portfolio</a>
+                            <a href="catalog.html?brand=motorola" style="color: #0e1a24; padding: 12px 16px; text-decoration: none; display: block; font-weight: 700; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9;"><i class="fa-solid fa-store" style="color:#0b5eb4; margin-right:6px;"></i> Motorola Portfolio</a>
+                            <a href="catalog.html?brand=ritron" style="color: #0e1a24; padding: 12px 16px; text-decoration: none; display: block; font-weight: 700; font-size: 0.88rem;"><i class="fa-solid fa-store" style="color:#0b5eb4; margin-right:6px;"></i> Ritron Portfolio</a>
+                        </div>
+                    </div>
+
+                    <a href="#industries" style="color: #0e1a24; text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.92rem;">Industries Served</a>
+                    <a href="calculator.html" class="nav-calc-link" style="color: #0e1a24; text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.92rem;"><i class="fa-solid fa-tower-broadcast" style="color: #0b5eb4;"></i> RF Link Sim</a>
                 </nav>
             </div>
         </div>
     </header>
+
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
@@ -57,56 +62,155 @@
         </div>
     </section>
 
-          <!-- Dynamic Enterprise Inventory Filter Catalog Section (De-Boxed Open Design) -->
+    <!-- Concise Homepage Procurement Portal (Trimmed Clean Design) -->
     <section id="catalog" class="catalog-section" style="padding: 80px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0;">
-        <div class="container">
-            <span style="color: #0b5eb4; font-size: 0.75rem; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 5px;"><i class="fa-solid fa-boxes-stacked"></i> DIRECT PROCUREMENT</span>
-            <h2 class="section-title" style="color: #0e1a24; font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; text-align: left;">Authorized Marketplace Catalog</h2>
-            <p class="section-subtitle" style="color: #5a6e72; font-size: 1rem; margin-bottom: 45px; text-align: left; max-width: 700px;">Real-time hardware availability and technical specifications from leading wireless networks.</p>
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <span style="color: #0b5eb4; font-size: 0.75rem; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 5px;"><i class="fa-solid fa-boxes-stacked"></i> DIRECTORY ROUTING TERMINAL</span>
+            <h2 class="section-title" style="color: #0e1a24; font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; text-align: left;">Direct Procurement Showrooms</h2>
+            <p class="section-subtitle" style="color: #5a6e72; font-size: 1rem; margin-bottom: 40px; text-align: left; max-width: 700px;">Select a certified manufacturer portal below to audit equipment specification grids, download compliance datasheets, or execute instant checkout deployments.</p>
             
-                        <!-- MASTER FILTER HUB DECK ASSEMBLY: Open Design Layout Stack -->
-            <div class="search-filter-container" style="background: none; border: none; padding: 0; margin-bottom: 45px; display: flex; flex-direction: column; gap: 25px; box-shadow: none;">
-                
-                <!-- Main Search Bar (Sleek light-mode console styling) -->
-                <div style="position: relative; width: 100%;">
-                    <i class="fa-solid fa-magnifying-glass search-icon" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #5a6e72; font-size: 1.1rem; z-index: 5;"></i>
-                    <input type="text" id="catalogSearch" placeholder="Search by brand, model, or spec (e.g. Motorola, UHF, Portable)..." style="width: 100%; padding: 16px 15px 16px 50px; background: #f8fafc; border: 2px solid #e2e8f0; color: #0e1a24; border-radius: 6px; outline: none; font-size: 1rem; font-family: inherit; box-sizing: border-box; font-weight: 500;">
+            <!-- DIRECT REVENUE ROUTING PORTS: Clicking a choice passes parameters instantly to catalog.html -->
+            <div style="display: flex; flex-direction: column; gap: 12px; text-align: left;">
+                <label style="font-size: 0.72rem; font-weight: 800; color: #0b5eb4; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fa-solid fa-handshake"></i> Direct Manufacturer Catalogs:</label>
+                <div class="accessory-filter-pills" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="catalog.html?brand=kenwood" style="text-decoration: none;" class="pill-btn brand-pill"><i class="fa-solid fa-circle-nodes"></i> Kenwood Storefront</a>
+                    <a href="catalog.html?brand=icom" style="text-decoration: none;" class="pill-btn brand-pill"><i class="fa-solid fa-circle-nodes"></i> Icom Storefront</a>
+                    <a href="catalog.html?brand=hytera" style="text-decoration: none;" class="pill-btn brand-pill"><i class="fa-solid fa-circle-nodes"></i> Hytera Storefront</a>
+                    <a href="catalog.html?brand=motorola" style="text-decoration: none;" class="pill-btn brand-pill"><i class="fa-solid fa-circle-nodes"></i> Motorola Storefront</a>
+                    <a href="catalog.html?brand=ritron" style="text-decoration: none;" class="pill-btn brand-pill"><i class="fa-solid fa-circle-nodes"></i> Ritron Storefront</a>
                 </div>
-
-                <!-- TIER 1: BRAND FILTERS (MOVED TO THE ABSOLUTE TOP WITH SAFE INTERCEPTS) -->
-                <div style="display: flex; flex-direction: column; gap: 10px; text-align: left; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0;">
-                    <label style="font-size: 0.75rem; font-weight: 800; color: #0b5eb4; text-transform: uppercase; letter-spacing: 0.75px;"><i class="fa-solid fa-handshake"></i> 1. Select Manufacturer Fleet:</label>
-                    <div class="accessory-filter-pills" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button class="pill-btn brand-pill active" id="btn-brand-all" onclick="selectBrandFilter('All')"><i class="fa-solid fa-globe"></i> All Brands</button>
-                        <button class="pill-btn brand-pill" id="btn-brand-motorola" onclick="selectBrandFilter('Motorola')"><i class="fa-solid fa-circle-nodes"></i> MOTOROLA</button>
-                        <button class="pill-btn brand-pill" id="btn-brand-kenwood" onclick="selectBrandFilter('Kenwood')"><i class="fa-solid fa-circle-nodes"></i> KENWOOD</button>
-                        <button class="pill-btn brand-pill" id="btn-brand-icom" onclick="selectBrandFilter('Icom')"><i class="fa-solid fa-circle-nodes"></i> ICOM</button>
-                        <button class="pill-btn brand-pill" id="btn-brand-hytera" onclick="selectBrandFilter('Hytera')"><i class="fa-solid fa-circle-nodes"></i> HYTERA</button>
-                        <button class="pill-btn brand-pill" id="btn-brand-ritron" onclick="selectBrandFilter('Ritron')"><i class="fa-solid fa-circle-nodes"></i> RITRON</button>
-                    </div>
-                </div>
-
-                <!-- TIER 2: HARDWARE TYPE SELECTIONS -->
-                <div style="display: flex; flex-direction: column; gap: 10px; text-align: left;">
-                    <label style="font-size: 0.75rem; font-weight: 800; color: #0e1a24; text-transform: uppercase; letter-spacing: 0.75px;"><i class="fa-solid fa-tower-broadcast"></i> 2. Select Hardware or Accessory Tier:</label>
-                    <div class="accessory-filter-pills" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">
-                        <button class="pill-btn active" onclick="filterAccessory('All')">All Hardware</button>
-                        <button class="pill-btn" onclick="filterAccessory('Portable Radio')"><i class="fa-solid fa-walkie-talkie"></i> Portables</button>
-                        <button class="pill-btn" onclick="filterAccessory('Mobile Radio')"><i class="fa-solid fa-car-rear"></i> Mobiles</button>
-                        <button class="pill-btn" onclick="filterAccessory('Repeater Infrastructure')"><i class="fa-solid fa-tower-cell"></i> Repeaters</button>
-                        <button class="pill-btn" onclick="filterAccessory('Antennas')"><i class="fa-solid fa-tower-broadcast"></i> Antennas</button>
-                        <button class="pill-btn" onclick="filterAccessory('Batteries')"><i class="fa-solid fa-battery-full"></i> Batteries</button>
-                        <button class="pill-btn" onclick="filterAccessory('Chargers')"><i class="fa-solid fa-bolt"></i> Chargers</button>
-                        <button class="pill-btn" onclick="filterAccessory('Microphones')"><i class="fa-solid fa-microphone"></i> Microphones</button>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- Real-Time Target Hardware Feed Container -->
-            <div id="api-product-feed" class="grid-container"></div>
         </div>
     </section>
+
+<!-- =========================================================================
+     ENTERPRISE PTToC / PoC EDUCATIONAL REFERENCE ENGINE (PART 1 OF 2)
+     ========================================================================= -->
+<section id="poc-education" style="padding: 90px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box;">
+        
+        <!-- Header Strip Section -->
+        <div style="border-bottom: 2px solid #0b5eb4; padding-bottom: 20px; margin-bottom: 45px; text-align: left;">
+            <span style="color: #0b5eb4; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 6px;">
+                <i class="fa-solid fa-tower-cell"></i> ARCHITECTURE BRIEF // SYSTEM-PoC
+            </span>
+            <h2 style="font-size: 2.2rem; font-weight: 900; color: #0e1a24; margin: 0; text-transform: uppercase; letter-spacing: -0.5px;">
+                Push-to-Talk Over Cellular (PoC) Technology
+            </h2>
+            <p style="color: #5a6e72; font-size: 1.05rem; margin: 8px 0 0 0; max-width: 800px; line-height: 1.5; font-weight: 500;">
+                A comprehensive technical guide to nationwide wireless fleet routing over commercial LTE cellular networks and private Wi-Fi infrastructure.
+            </p>
+        </div>
+
+        <!-- CORE PARADIGM SHIFT: LMR vs PoC Split Matrix Rows -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; align-items: start; margin-bottom: 50px;">
+            
+            <!-- Left Vector: Traditional LMR Constraints Panel -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-top: 4px solid #ef4444; border-radius: 6px; padding: 30px; text-align: left; box-sizing: border-box;">
+                <h3 style="color: #0e1a24; font-size: 1.15rem; font-weight: 800; margin: 0 0 15px 0; text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i> 1.0 Traditional Land Mobile Radio (LMR)
+                </h3>
+                <p style="color: #475569; font-size: 0.92rem; line-height: 1.6; margin: 0 0 20px 0;">
+                    Standard analog and digital two-way radio systems (VHF/UHF) propagate RF energy via localized line-of-sight paths. To expand operational footprints beyond a few miles, enterprise clients are forced to fund, construct, and maintain heavy capital infrastructure, including tower leases, duplexers, and fixed base repeaters.
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; color: #475569; font-weight: 600;">
+                    <li><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 6px;"></i> Range restricted by structural horizons and topography bounds.</li>
+                    <li><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 6px;"></i> High upfront infrastructure expenditures (CAPEX).</li>
+                    <li><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 6px;"></i> Strict FCC frequency licensing and coordination boundaries.</li>
+                </ul>
+            </div>
+
+            <!-- Right Vector: The PoC Alternative Network Panel -->
+            <div style="background: #f0f7ff; border: 1px solid #cbd5e1; border-top: 4px solid #0b5eb4; border-radius: 6px; padding: 30px; text-align: left; box-sizing: border-box;">
+                <h3 style="color: #0e1a24; font-size: 1.15rem; font-weight: 800; margin: 0 0 15px 0; text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-circle-nodes" style="color: #0b5eb4;"></i> 2.0 Push-to-Talk Over Cellular Solution
+                </h3>
+                <p style="color: #475569; font-size: 0.92rem; line-height: 1.6; margin: 0 0 20px 0;">
+                    PoC tech digitizes voice signals into secure IP data packets, routing them through pre-existing commercial 4G LTE/5G carrier networks and localized enterprise Wi-Fi systems. Hitting the PTT switch creates instant communication links with zero distance constraints, bridging dispatch hubs and mobile fleets nationwide.
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; color: #0e1a24; font-weight: 700;">
+                    <li><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 6px;"></i> Infinite operational range footprint spanning coast-to-coast.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 6px;"></i> Zero localized repeater infrastructure costs or tower lease burdens.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 6px;"></i> Fast, license-free fleet deployments with instant system boots.</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- TECHNICAL DEEP DIVE: IP Layer Routing & Technical Topology -->
+        <div style="background: #0e1a24; color: #ffffff; border-radius: 6px; padding: 35px; text-align: left; box-sizing: border-box; margin-bottom: 50px; border-left: 5px solid #00FFFF; box-shadow: 0 10px 30px rgba(14,26,36,0.15);">
+            <h3 style="color: #00FFFF; font-size: 1.25rem; font-weight: 800; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Consolas', 'Courier New', monospace, sans-serif;">
+                <i class="fa-solid fa-network-wired"></i> 3.0 Operational Mechanics & Network Topology
+            </h3>
+            <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-bottom: 25px; font-family: 'Consolas', 'Courier New', monospace, sans-serif;">
+                When a user initiates transmission on a PoC terminal (e.g., Icom IP730D or Motorola SL300 LTE), voice audio is instantly encoded via an optimized hardware vocoder into narrow-bandwidth digital data blocks. These packets traverse the mobile network loop through secure APN (Access Point Name) gateways to a centralized cloud dispatch server matrix. The server resolves destination routing keys and multi-casts the payload down to targeted talkgroups simultaneously—all in <strong>&lt; 350 milliseconds</strong>.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; font-family: inherit;">
+                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 4px;">
+                    <h4 style="color: #ffffff; font-size: 0.85rem; font-weight: 800; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Advanced Encryption Standards</h4>
+                    <p style="color: #94a3b8; font-size: 0.8rem; margin: 0; line-height: 1.4;">Voice data passing through carrier channels is secured via SSL/TLS and end-to-end AES-256 bit encryption keys, preventing tracking and eavesdropping.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 4px;">
+                    <h4 style="color: #ffffff; font-size: 0.85rem; font-weight: 800; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Cross-Platform Roaming</h4>
+                    <p style="color: #94a3b8; font-size: 0.8rem; margin: 0; line-height: 1.4;">PoC transceivers actively monitor link budget levels, switching between 4G/5G towers and localized industrial Wi-Fi networks without dropping active calls.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 4px;">
+                    <h4 style="color: #ffffff; font-size: 0.85rem; font-weight: 800; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Integrated Telemetry Suite</h4>
+                    <p style="color: #94a3b8; font-size: 0.8rem; margin: 0; line-height: 1.4;">Because terminals occupy continuous IP paths, central dispatch stations track real-time GPS locations, dispatch status lines, and system alerts natively.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HIGH-UTILITY BENCHMARK GUIDE: System Comparison Matrix Profile -->
+        <div style="text-align: left;">
+            <h3 style="font-size: 1.2rem; font-weight: 900; color: #0e1a24; margin-bottom: 25px; text-transform: uppercase; letter-spacing: -0.25px;">
+                4.0 Procurement Integration & Comparison Profile
+            </h3>
+            
+            <div style="overflow-x: auto; width: 100%; border: 1px solid #e2e8f0; border-radius: 6px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left; background: #ffffff; min-width: 600px;">
+                    <thead>
+                        <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0; color: #0e1a24; font-weight: 800;">
+                            <th style="padding: 15px;">System Attribute</th>
+                            <th style="padding: 15px; color: #0b5eb4;">Push-to-Talk Over Cellular (PoC)</th>
+                            <th style="padding: 15px;">Traditional Digital LMR Systems</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: #475569; font-weight: 500;">
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px; font-weight: 700; color: #0e1a24;">Maximum Range Limit</td>
+                            <td style="padding: 15px; color: #0b5eb4; font-weight: 700;">Nationwide Footprint (Carrier Bound)</td>
+                            <td style="padding: 15px;">Local Site Footprint (Horizon Bound)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px; font-weight: 700; color: #0e1a24;">Upfront Infrastructure Costs</td>
+                            <td style="padding: 15px; color: #16a34a; font-weight: 700;"><i class="fa-solid fa-circle-dollar-to-slot"></i> None ($0.00 Fixed Assets)</td>
+                            <td style="padding: 15px;">High (Towers, Repeaters, Duplexers)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px; font-weight: 700; color: #0e1a24;">Operational Scalability</td>
+                            <td style="padding: 15px;">Infinite (Add units to the database instantly)</td>
+                            <td style="padding: 15px;">Limited by fixed hardware channel banks</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; font-weight: 700; color: #0e1a24;">Ideal Industry Sectors</td>
+                            <td style="padding: 15px; font-weight: 600;">Long-Haul Logistics, Multi-Site Utilities, Campus Grounds</td>
+                            <td style="padding: 15px;">Heavy Construction Sites, Public Safety Rigs, Remote Refining Fields</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 30px; display: flex; justify-content: flex-start;">
+                <button class="btn-primary" onclick="filterAccessory('All'); document.getElementById('catalog').scrollIntoView({behavior: 'smooth'});" style="font-weight: 800; text-transform: uppercase; padding: 14px 28px; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(11, 94, 180, 0.15);">
+                    <i class="fa-solid fa-magnifying-glass"></i> Browse Certified PoC System Stock Lines
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 	    <!-- Industries Grid Section -->
     <section id="industries" class="industries-section">
