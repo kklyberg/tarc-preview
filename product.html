@@ -145,32 +145,61 @@
             fetchFullCatalogFeed();
         }
 
-        // --- 2. MULTI-CASE DATA STREAM HANDSHAKE PIPELINE ---
+                // --- 2. HIGH-SPEED CORS COMPLIANT DATA FETCH PIPELINE WITH DUAL-LAYER CACHING ---
         async function fetchFullCatalogFeed() {
-            try {
-                const response = await fetch(LIVE_STREAM_URL);
-                if (!response.ok) throw new Error("Database handshake timeout error.");
-                
-                masterSheetFullFeed = await response.json();
-                
-                const targetRadioNode = masterSheetFullFeed.find(radioItem => {
-                    const rowModelString = (radioItem.model || radioItem.Model || "").toString().trim().toLowerCase();
-                    return rowModelString === activeRouteModelToken.toLowerCase();
-                });
+            const STORAGE_CACHE_KEY = "tarc_inventory_cache_feed";
+            const CACHE_TIMESTAMP_KEY = "tarc_inventory_cache_timestamp";
+            const TEN_MINUTES_IN_MS = 10 * 60 * 1000;
 
-                if (!targetRadioNode) {
-                    document.getElementById("productModelTitle").innerText = "Model Record Not Found";
+            const cachedDataString = localStorage.getItem(STORAGE_CACHE_KEY);
+            const cachedTimestampString = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+            const currentTimeStamp = Date.now();
+
+            // INSTANT DATA DELIVERY: Pulls your technical spec records out in milliseconds
+            if (cachedDataString && cachedTimestampString) {
+                if ((currentTimeStamp - parseInt(cachedTimestampString)) < TEN_MINUTES_IN_MS) {
+                    masterSheetFullFeed = JSON.parse(cachedDataString);
+                    executeSpecificationsRouteAndDraw();
                     return;
                 }
+            }
 
-                // Fire off the separate renderer functions to build our layouts cleanly
-                buildMainProductDetails(targetRadioNode);
-                buildAssociatedAccessories(targetRadioNode);
+            try {
+                console.log("📡 CONNECTING: Local cache clear or expired. Syncing with live spreadsheet macro...");
+                const networkResponse = await fetch(LIVE_STREAM_URL);
+                if (!networkResponse.ok) throw new Error("Database handshake timeout.");
+                
+                masterSheetFullFeed = await networkResponse.json();
+                
+                localStorage.setItem(STORAGE_CACHE_KEY, JSON.stringify(masterSheetFullFeed));
+                localStorage.setItem(CACHE_TIMESTAMP_KEY, currentTimeStamp.toString());
+                
+                executeSpecificationsRouteAndDraw();
                 
             } catch (err) {
-                console.error("❌ CRITICAL DISCONNECT: Remote matrix down.", err);
-                document.getElementById("productModelTitle").innerText = "Database Connection Timeout";
+                console.error("❌ TIMEOUT: Network stream down. Pulling emergency local memory rows.", err);
+                if (cachedDataString) {
+                    masterSheetFullFeed = JSON.parse(cachedDataString);
+                    executeSpecificationsRouteAndDraw();
+                } else {
+                    document.getElementById("productModelTitle").innerText = "Connection Offline";
+                }
             }
+        }
+
+        function executeSpecificationsRouteAndDraw() {
+            const targetRadioNode = masterSheetFullFeed.find(radioItem => {
+                const rowModelString = (radioItem.model || radioItem.Model || "").toString().trim().toLowerCase();
+                return rowModelString === activeRouteModelToken.toLowerCase();
+            });
+
+            if (!targetRadioNode) {
+                document.getElementById("productModelTitle").innerText = "Model Record Not Found";
+                return;
+            }
+
+            buildMainProductDetails(targetRadioNode);
+            buildAssociatedAccessories(targetRadioNode);
         }
 
         // --- 3. DYNAMIC MAIN DETAIL SPECIFICATION CARD PAINTER ---
