@@ -214,8 +214,6 @@ function initializeUniversalShowroomRoute() {
     if (topNavbarField) topNavbarField.value = cleanSearchToken; 
     if (innerGridField) innerGridField.value = cleanSearchToken; 
   } 
-
-  fetchUniversalCatalogFeed(); 
 } 
 
 // --- 2. CACHING STORAGE PIPELINE: Controls 10-Minute Refresh Loops ---
@@ -288,7 +286,7 @@ function executeLiveMatrixSift() {
     if (activeSelectedIndustry === "all" || activeSelectedIndustry === "") {
       passesIndustryTier = true;
     } else {
-      passesIndustryTier = industryString.includes(activeSelectedIndustry.toLowerCase().trim());
+      passesIndustryTier = industryString.toLowerCase().trim().includes(activeSelectedIndustry.toLowerCase().trim());
     }
 
     return passesBrandGate && passesSearchInput && passesCategoryTier && passesIndustryTier; 
@@ -296,13 +294,11 @@ function executeLiveMatrixSift() {
 
   buildResponsiveProductCards(parsedSiftedResults); 
 }
-
 // --- 4. DATA-DRIVEN CARD RENDERING LOOP ENGINE --- 
 function buildResponsiveProductCards(itemsArray) { 
   const feedGridNode = document.getElementById("catalog-feed-grid"); 
   if (!feedGridNode) return; 
 
-  // SINGLE EXACT MATCH ROUTER: Bypasses grid and forwards directly to profile page [INDEX]
   if (itemsArray && itemsArray.length === 1) { 
     const singleMatchedItem = itemsArray[0]; 
     const targetModelToken = singleMatchedItem.model || singleMatchedItem.Model || ""; 
@@ -366,7 +362,7 @@ function buildResponsiveProductCards(itemsArray) {
       <div style="width:100%; height:160px; display:flex; align-items:center; justify-content:center; margin-bottom:15px; background:rgba(0,0,0,0.01); border:1px solid #e2e8f0; border-radius:4px; overflow:hidden;"> 
         <a href="product.html?model=${encodeURIComponent(exactModelName)}" style="display:block; text-align:center;"><img src="${fallbackImageSource}" style="max-height:90%; max-width:90%; object-fit:contain;" onerror="this.onerror=null; this.src='images/radio-placeholder.png';"></a> 
       </div> 
-      <h3 style="margin:0 0 5px 0; text-align:left;"> 
+      <h3> 
         <a href="product.html?model=${encodeURIComponent(exactModelName)}" style="color:#0e1a24; text-decoration:none; font-size:1.25rem; font-weight:800; transition:color 0.2s;" onmouseover="this.style.color='#0b5eb4'" onmouseout="this.style.color='#0e1a24'">${exactModelName}</a> 
       </h3> 
       <span style="color:#0b5eb4; font-size:0.75rem; font-weight:700; text-transform:uppercase; margin-bottom:12px; display:block; text-align:left;">${exactTypeName}</span> 
@@ -380,12 +376,11 @@ function buildResponsiveProductCards(itemsArray) {
     feedGridNode.appendChild(itemCardContainer); 
   }); 
 
-  // Safely wipe your transient industry tracking token from persistent memory layers [INDEX]
   localStorage.removeItem("tarcAutoSearchQuery");
   activeSelectedIndustry = "all";
 } 
 
-// --- 5. INTERFACE PILL CONTROLLER (SYNCHRONIZED WITH BUTTON MARKUP) ---
+// --- 5. INTERFACE PILL CONTROLLER ---
 window.setCatalogActiveCategory = function(categoryToken, clickedButtonElement) { 
   if (!categoryToken) return; 
   activeSelectedCategory = categoryToken.toString().trim().toLowerCase(); 
@@ -396,7 +391,6 @@ window.setCatalogActiveCategory = function(categoryToken, clickedButtonElement) 
   if (clickedButtonElement) { 
     clickedButtonElement.classList.add("active"); 
   } else {
-    // Fallback highlight parsing if event reference object is dropped
     siblingButtons.forEach(btn => {
       if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${categoryToken}'`)) {
         btn.classList.add('active');
@@ -406,7 +400,7 @@ window.setCatalogActiveCategory = function(categoryToken, clickedButtonElement) 
   executeLiveMatrixSift(); 
 };
 
-// --- 6. CORE DESKTOP DRAWER TRIGGER EVENT BINDERS (UNIFIED DUAL SEARCH RESCUE) --- 
+// --- 6. CORE DESKTOP DRAWER TRIGGER EVENT BINDERS --- 
 document.addEventListener("DOMContentLoaded", () => { 
   const trigger = document.getElementById("cartToggleBtn"); 
   const dismiss = document.getElementById("closeCartBtn"); 
@@ -448,8 +442,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.history.replaceState({}, document.title, window.location.pathname);
   initializeUniversalShowroomRoute(); 
+  fetchUniversalCatalogFeed();
 }); 
 </script> 
 </body> 
