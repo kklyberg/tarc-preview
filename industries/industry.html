@@ -252,44 +252,132 @@
             }
         };
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const activeSector = urlParams.get('sector') || 'education';
-            const sectorData = industryMatrix[activeSector] || industryMatrix["education"];
+     document.addEventListener("DOMContentLoaded", async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const activeSector = urlParams.get('sector') || 'education';
+  const sectorData = industryMatrix[activeSector] || industryMatrix["education"];
+  
+  // 1. DYNAMIC COPY FILL ENGINE: Pulls text straight out of your dictionary object
+  document.getElementById("indTitle").innerText = sectorData.title;
+  document.getElementById("indSubtitle").innerText = sectorData.subtitle;
+  document.getElementById("indHeading").innerText = sectorData.heading;
+  document.getElementById("indBodyText").innerText = sectorData.body;
+  document.getElementById("indArchitecture").innerText = sectorData.architecture;
+  
+  const deploySpecsNode = document.getElementById("indDeploySpecs");
+  if (deploySpecsNode && sectorData.specs) {
+    deploySpecsNode.innerHTML = sectorData.specs.map(specText => `
+      <li style="color: #cbd5e1; font-size: 0.88rem; display: flex; align-items: center; gap: 8px;">
+        <i class="fa-solid fa-circle-nodes" style="color: #00FF66; font-size: 0.85rem;"></i> ${specText}
+      </li>
+    `).join('');
+  }
+  
+  const indDeployTitleNode = document.getElementById("indDeployTitle");
+  const catalogBtnNode = document.getElementById("indViewCatalogBtn");
+  if (indDeployTitleNode) indDeployTitleNode.innerText = sectorData.deployTitle;
+  
+      // FIXED ROUTING DIRECTION LINK: Points directly to your catalog file [INDEX]
+    if (catalogBtnNode && sectorData.tag) { 
+      catalogBtnNode.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> View Matching ${sectorData.tag} Catalog`; 
+      catalogBtnNode.setAttribute("href", `../catalog.html`); 
+      
+      catalogBtnNode.addEventListener("click", () => { 
+        localStorage.setItem("tarcAutoSearchQuery", sectorData.tag.toLowerCase().trim()); 
+      }); 
+    }
+  
+  let finalImageSrc = sectorData.bg;
+  if(!finalImageSrc || finalImageSrc === "") {
+    finalImageSrc = "https://unsplash.com";
+  }
+  document.getElementById("industryHero").style.backgroundImage = `linear-gradient(rgba(11, 17, 22, 0.94), rgba(11, 17, 22, 0.40), rgba(11, 17, 22, 0.94)), url('${finalImageSrc}')`;
 
-            document.getElementById("indTitle").innerText = sectorData.title;
-            document.getElementById("indSubtitle").innerText = sectorData.subtitle;
-            document.getElementById("indHeading").innerText = sectorData.heading;
-            document.getElementById("indBodyText").innerText = sectorData.body;
-            document.getElementById("indArchitecture").innerText = sectorData.architecture;
-            
-            const deploySpecsNode = document.getElementById("indDeploySpecs");
-            if (deploySpecsNode && sectorData.specs) {
-                deploySpecsNode.innerHTML = sectorData.specs.map(specText => `
-                    <li style="color: #cbd5e1; font-size: 0.88rem; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-circle-nodes" style="color: #00FF66; font-size: 0.85rem;"></i> ${specText}
-                    </li>
-                `).join('');
-            }
-            
-            const indDeployTitleNode = document.getElementById("indDeployTitle");
-            const catalogBtnNode = document.getElementById("indViewCatalogBtn");
-            if (indDeployTitleNode) indDeployTitleNode.innerText = sectorData.deployTitle;
-            
-            if (catalogBtnNode && sectorData.tag) {
-                catalogBtnNode.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> View Matching ${sectorData.tag} Catalog`;
-                catalogBtnNode.setAttribute("href", `../index.html#catalog`);
-                catalogBtnNode.addEventListener("click", () => {
-                    localStorage.setItem("tarcAutoSearchQuery", sectorData.tag);
-                });
-            }
-            
-            let finalImageSrc = sectorData.bg;
-            if(!finalImageSrc || finalImageSrc === "") {
-                finalImageSrc = "https://unsplash.com";
-            }
-            document.getElementById("industryHero").style.backgroundImage = `linear-gradient(rgba(11, 17, 22, 0.94), rgba(11, 17, 22, 0.40), rgba(11, 17, 22, 0.94)), url('${finalImageSrc}')`;
-        });
-    </script>
+  // =========================================================================
+  // 2. LIVE INTEGRATED PRODUCTS ENGINE: Fetches, filters, and paints grid rows
+  // =========================================================================
+  const LIVE_STREAM_URL = "https://script.google.com/macros/s/AKfycbzQMVuTRi_AlSzkkNEJgN5YU0d2zngwqL1LbDR7HIUqq0oVkXZjBajCaoDGSHJNqGo2aw/exec";
+  const displayGridNode = document.getElementById("industryRecommendedProductsGrid");
+  if (!displayGridNode) return;
+
+  try {
+    const networkResponse = await fetch(LIVE_STREAM_URL);
+    const masterSheetFullFeed = await networkResponse.json();
+    
+    // Filters spreadsheet Column 12 using the specific "tag" name from your dictionary (e.g., "Education")
+    const lookupTagText = sectorData.tag.toLowerCase().trim();
+    const matchingSectorItems = masterSheetFullFeed.filter(radioItem => {
+      let targetIndustryValue = radioItem["industry"] || radioItem["Industry"] || radioItem["bestFor"] || radioItem["bestfor"] || "";
+      return targetIndustryValue.toString().toLowerCase().includes(lookupTagText);
+    });
+
+    // Handle completely empty search results gracefully
+    if (matchingSectorItems.length === 0) {
+      displayGridNode.innerHTML = `
+        <div style="grid-column: 1 / -1; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 6px; padding: 25px; color: #b45309; font-size: 0.95rem; font-weight: 600; text-align: left; width: 100%; box-sizing: border-box;">
+          <i class="fa-solid fa-triangle-exclamation"></i> No hardware products are currently tagged for this sector inside Column 12 of your spreadsheet rows.
+        </div>`;
+      return;
+    }
+
+    // Loop through the data to paint your hardware cards layout dynamically
+    displayGridNode.innerHTML = "";
+    matchingSectorItems.forEach(radio => {
+      const cardBox = document.createElement("div");
+      cardBox.style.cssText = "background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:20px; display:flex; flex-direction:column; text-align:left; box-shadow:0 4px 12px rgba(14,26,36,0.02);";
+      
+      let rawPrice = radio.price || radio.Price || 0;
+      let priceNum = parseFloat(rawPrice) || 0;
+      let priceLabel = priceNum > 0 ? `$${priceNum.toFixed(2)}` : "Contact for Quote";
+      
+      let exactModel = radio.model || radio.Model || "Radio Asset";
+      let exactBrand = radio.brand || radio.Brand || "Brand Node";
+      let rawImg = radio.image || radio.Image || "";
+      let cleanImgName = rawImg.toString().trim().includes("/") ? rawImg.split("/").pop() : rawImg;
+      
+      // Relative backsteps path patch safely exits the /industries subfolder to fetch images
+      let folderPrefix = exactBrand.toLowerCase().includes("hytera") ? "../hytera/images/" : (exactBrand.toLowerCase().includes("icom") ? "../icom/images/" : "../kenwood/images/");
+      let finalImageSource = cleanImgName !== "" ? `${folderPrefix}${cleanImgName}` : "../images/radio-placeholder.png";
+
+      cardBox.innerHTML = `
+        <div style="width:100%; height:180px; display:flex; align-items:center; justify-content:center; background:#f8fafc; border-radius:4px; margin-bottom:15px; overflow:hidden;">
+          <img src="${finalImageSource}" style="max-height:90%; max-width:90%; object-fit:contain;" onerror="this.src='../images/radio-placeholder.png';">
+        </div>
+        <span style="color:#0b5eb4; font-size:0.68rem; font-weight:800; text-transform:uppercase; display:block; margin-bottom:3px;">${exactBrand}</span>
+        <h3 style="color:#0e1a24; font-size:1.15rem; font-weight:800; margin:0 0 6px 0; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${exactModel}</h3>
+        <div style="color:#16a34a; font-size:1.25rem; font-weight:900; margin-bottom:15px;">${priceLabel}</div>
+        <button class="btn-primary" style="width:100%; font-size:0.8rem; font-weight:800; background:#0b5eb4; color:#ffffff; padding:10px; border:none; border-radius:4px; cursor:pointer; text-transform:uppercase; margin-top:auto;" onclick="window.location.href='../product.html?model=${encodeURIComponent(exactModel)}'">
+          <i class="fa-solid fa-circle-info"></i> View System Profile
+        </button>
+      `;
+      displayGridNode.appendChild(cardBox);
+    });
+
+  } catch (err) {
+    console.error("❌ HANDSHAKE FAULT: Ingestion stream failed inside loop.", err);
+    displayGridNode.innerHTML = `<div style="grid-column:1/-1; color:#ef4444; font-weight:700; text-align:center; padding:30px;">Connection timeout syncing spreadsheet data rows.</div>`;
+  }
+    // ... ALL YOUR EXISTING MATRIX TEXT PARSERS RUN ABOVE HERE ...
+
+  // =========================================================================
+  // ISOLATED GLOBAL NAVBAR SEARCH ENGINE (SUBFOLDER SAFE ROUTER)
+  // =========================================================================
+  const subfolderNavbarSearchField = document.getElementById("navbarGlobalSearchInput");
+  
+  if (subfolderNavbarSearchField) {
+    subfolderNavbarSearchField.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const strictSearchQuery = e.target.value.toLowerCase().trim();
+        if (strictSearchQuery === "") return;
+
+        // FIXED PATH: Points backward out of the subfolder using ../ safely
+        window.location.href = `../catalog.html?search=${encodeURIComponent(strictSearchQuery)}`;
+      }
+    });
+  }
+  // =========================================================================
+
+}); // This is your existing closing brace/parenthesis for DOMContentLoaded!
+</script>
 </body>
 </html>
