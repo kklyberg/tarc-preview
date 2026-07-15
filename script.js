@@ -7,7 +7,7 @@
  */
 
 // FIXED REFERENCE HOOK: Restored your missing live micro-service database feed anchor link
-const GOOGLE_INVENTORY_FEED_URL = "https://script.google.com/macros/s/AKfycbzQMVuTRi_AlSzkkNEJgN5YU0d2zngwqL1LbDR7HIUqq0oVkXZjBajCaoDGSHJNqGo2aw/exec";
+const GOOGLE_INVENTORY_FEED_URL = "https://script.google.com/macros/s/AKfycbxWgZS4ViFUeNALUncco2zs1l9wTvTErszmUDFim1L9f9S3Onp6o7neSVuE3j-vgJCe/exec";
 
 // Central system state registers matching catalog specifications
 let masterSheetInventoryFeed = [];
