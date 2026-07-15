@@ -356,7 +356,7 @@
         let exactModelName = radioItem.model || radioItem.Model || "Commercial Tier"; 
         let exactBrandName = radioItem.brand || radioItem.Brand || "Authorized Brand"; 
         let exactTypeName = radioItem.type || radioItem.Type || "Asset Tier"; 
-        let exactBestForText = radioItem["short-description"] || radioItem.bestFor || radioItem.bestfor || "All General Sectors"; 
+        let exactBestForText = radioItem["catalog-copy"] || radioItem["short-description"] || "View technical specifications.";
 
         itemCardContainer.innerHTML = ` 
           <div style="background:rgba(11, 94, 180, 0.08); color:#0b5eb4; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; padding:4px 10px; border-radius:4px; border:1px solid rgba(11, 94, 180, 0.2); align-self:flex-start; margin-bottom:15px;"><i class="fa-solid fa-award"></i> ${exactBrandName}</div> 
